@@ -1,1 +1,23 @@
 
+.favs {
+    margin-bottom: 8px;
+    }
+    
+    #foodImg {
+        max-height: fit-content;
+    }
+    
+    h4, nav, .card-title {
+        font-family: 'Pacifico', cursive;
+        color: navy
+    }
+    nav {
+        background-color: navy;
+    }
+    
+    
+    .btn, .btn-small {
+        background-color:#ff56b4;
+    }
+    
+    
