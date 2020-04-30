@@ -35,7 +35,12 @@
     </div></li>
     <div id="favorites">
       <ul>
-
+        <li>
+          <a class="waves-effect waves-light btn-small"><i class="material-icons right">favorite</i>China Jade</a>
+        </li>
+        <li><a class="waves-effect waves-light btn-small"><i class="material-icons right">favorite</i>Tarascos</a></li>
+        <li><a class="waves-effect waves-light btn-small"><i class="material-icons right">favorite</i>El Zarape</a></li>
+        <li><a class="waves-effect waves-light btn-small"><i class="material-icons right">favorite</i>Himchuli</a></li>
       </ul>
     </div>
   </ul>
@@ -79,7 +84,7 @@
       </div>
     </div>
     
-    <!--Card for restaurant information. Will be appended to page dynamically-->   
+    <!--Card for restaurant information-->   
     <div class="row">
       <div class="col s12 horizontal center-align">
         <div class="card">
@@ -88,23 +93,24 @@
               <div class="card-image">
                 <!--Image provided by zomato: "featured_image" property-->
                 <div id="featuredImage">
-                  <!--Append Image Here-->
+                  <img src="food.jpg">
                 </div>
               </div>
               <div class="card-content">
                 <!--Restaurant Name: "name" property-->
                 <div id="restaurant name">
-                  <!--APpend Restaurant Name Here. Use <span class="card-title"></span>-->
+                  <span class="card-title" id="restaurantName">Cafe Brazil</span>
                 </div>
               </div>
             </div>
             <div class="col s8">
               <div id="restaurantInfo">
-                <!--Append restaurant info here-->
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellat amet accusantium saepe distinctio, dicta ea unde vero quae incidunt, culpa iusto suscipit facilis perspiciatis. Consequuntur quo a corporis, dolorem eum, eos deleniti recusandae ut dignissimos nam totam veritatis? Voluptates earum dolorum fugit eos laudantium commodi eius voluptas labore doloribus sed provident aperiam dolores error totam corporis ipsam, asperiores deleniti exercitationem unde. Ab iste ea ratione dicta voluptatum consequatur facilis blanditiis quisquam, mollitia minima. Odio, vel. Ratione nobis temporibus officia, eum sapiente dolore commodi illum! Neque reprehenderit voluptas facere voluptatum maiores. Aperiam dolores libero ea nesciunt atque voluptatem, repellendus architecto minus porro quas dicta explicabo minima possimus fuga velit laborum doloremque esse sit, error deleniti impedit voluptates incidunt. Earum, cupiditate? Perspiciatis magnam placeat sunt illum quos libero. Perferendis alias, reprehenderit voluptates voluptatem quis consequatur doloremque exercitationem molestias, iure pariatur cupiditate ex rem deserunt nisi tempore ad optio quaerat explicabo. Iusto?</p>
               </div>
               <div id="restaurantButtons">
-                <!--Append full menu button here. use <a class="waves-effect waves-light btn-small"><i class="material-icons right">restaurant_menu</i>view full menu</a> -->
-                <!--Append call restaurant button here. use <a class="waves-effect waves-light btn-small"><i class="material-icons right">phone</i>call</a>-->              </div>
+                <a class="waves-effect waves-light btn-small"><i class="material-icons right">restaurant_menu</i>view full menu</a>
+                <a class="waves-effect waves-light btn-small"><i class="material-icons right">phone</i>call</a>
+              </div>
               <!--Button to add restaurant to favorites list-->
               <a id="favBtn" class="btn-floating halfway-fab waves-effect waves-light pink lighten-2"><i class="material-icons">favorite_border</i></a>
             </div>
@@ -113,13 +119,14 @@
       </div>
     </div>
     
-    <!--Card For Map. will be appended to page dynamically-->
+    <!--Card For Map-->
     <div class="row ">
       <div class="col s12 center-align">
         <div class="card medium center-align">
           <h4 style="padding-top:20px;">where it's at</h4>
+          <!--Append Map into below div-->
           <div id="map">
-            <!--Append Map here-->
+            <img src="map.png" alt="map" style="width: 500px;" class="card-image">
           </div>
         </div>
       </div>
