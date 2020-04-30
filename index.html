@@ -1,117 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NavGrub</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-
-            
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NavGrub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+  
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper center-align">
-          <a class="brand-logo center">NavGrub</a>
-        </div>
-      </nav>
-
-      <div class="container">
-          <div class="row">
-            <div class="col s12 card small center-align" id="search" style="height: 175px;">
-                <h4>find a place to eat</h4>
-                <input type="text">
-                <a class="waves-effect waves-light btn-small"><i class="material-icons right">restaurant</i>restaurant</a>
-                <a class="waves-effect waves-light btn-small"><i class="material-icons right">location_city</i>location</a>
-                <a class="waves-effect waves-light btn-small"><i class="material-icons right">local_dining</i>cuisine</a>
+  <!--Header with app name-->
+  <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo center">NavGrub</a>
+      
+    </div>
+  </nav>
+  
+  <!--Slide out nav bar for favorite restaurants-->
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="sidenavBackground.jpg" class="responsive-img">
+      </div>
+      <br>
+      <h5>favorites</h5>
+      <br><br>
+    </div></li>
+    <div id="favorites">
+      <ul>
+        <li>
+          <a class="waves-effect waves-light btn-small"><i class="material-icons right">favorite</i>China Jade</a>
+        </li>
+        <li><a class="waves-effect waves-light btn-small"><i class="material-icons right">favorite</i>Tarascos</a></li>
+        <li><a class="waves-effect waves-light btn-small"><i class="material-icons right">favorite</i>El Zarape</a></li>
+        <li><a class="waves-effect waves-light btn-small"><i class="material-icons right">favorite</i>Himchuli</a></li>
+      </ul>
+    </div>
+  </ul>
+  
+  
+  <!--Main Body Content-->
+  <div class="container">
+    
+    
+    <!--Card For Query Box-->
+    <div class="row">
+      <div class="col s12 card small center-align" style="height: fit-content">
+        <h4>find a place to eat</h4>
+        <div class="row">
+          <div class="col s6">
+            <div class="input-field">
+              <i class="material-icons prefix">location_city</i>
+              <input placeholder="City" class="validate" id="city">
             </div>
-        </div>
-         
-           
-                    <div class="row">
-                        <div class="col s12 horizontal center-align">
-                          <div class="card">
-                              <div class="row center-align">
-                                    <div class="col s4">
-                                        <div class="card-image">
-                                        <img src="food.jpg" id="foodImg">
-                                        
-                                        </div>
-                                        <div class="card-content">
-                                        <span class="card-title">Cafe Brazil</span>
-                                        </div>
-                                    </div>
-                                    <div class="col s8">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellat amet accusantium saepe distinctio, dicta ea unde vero quae incidunt, culpa iusto suscipit facilis perspiciatis. Consequuntur quo a corporis, dolorem eum, eos deleniti recusandae ut dignissimos nam totam veritatis? Voluptates earum dolorum fugit eos laudantium commodi eius voluptas labore doloribus sed provident aperiam dolores error totam corporis ipsam, asperiores deleniti exercitationem unde. Ab iste ea ratione dicta voluptatum consequatur facilis blanditiis quisquam, mollitia minima. Odio, vel. Ratione nobis temporibus officia, eum sapiente dolore commodi illum! Neque reprehenderit voluptas facere voluptatum maiores. Aperiam dolores libero ea nesciunt atque voluptatem, repellendus architecto minus porro quas dicta explicabo minima possimus fuga velit laborum doloremque esse sit, error deleniti impedit voluptates incidunt. Earum, cupiditate? Perspiciatis magnam placeat sunt illum quos libero. Perferendis alias, reprehenderit voluptates voluptatem quis consequatur doloremque exercitationem molestias, iure pariatur cupiditate ex rem deserunt nisi tempore ad optio quaerat explicabo. Iusto?</p>
-                                        <a class="waves-effect waves-light btn">view full menu</a>
-                                        <a class="waves-effect waves-light btn">order now</a>
-                                        <a class="btn-floating halfway-fab waves-effect waves-light pink lighten-2"><i class="material-icons">favorite_border</i></a>
-                                    </div>
-                                </div>
-                          </div>
-                        </div>
-                      </div>
-                
-           
-            <div class="row ">
-                <div class="col s12 center-align">
-                    <div class="card medium center-align" id="map">
-                        <h4 style="padding-top:20px;">where it's at</h4>
-                        <img src="map.png" alt="map" style="width: 500px;" class="card-image">
-                    </div>
-                </div>
+          </div>
+          <div class="col s6">
+            <div class="input-field">
+              <i class="material-icons prefix">search</i>
+              <input placeholder="Moe's Tavern, Ethiopian, etc" id="query">
+              <label class="active" for="city"></label>
             </div>
-
+          </div>
+        </div>
 
         <div class="row">
-            <div class="col s12">
-                <div class="card" id="favs"">
-                    <div class="row"><div class="col s12"><h4 class="center-align">favorite joints</h4></div></div>
-
-                    <div class="row">
-                        <div class="col s4 center-align">
-                            <a class="waves-effect waves-light btn favs">Tarascos</a>
-                        </div>
-                        <div class="col s4 center-align">
-                            <a class="waves-effect waves-light btn favs">China Jade</a>
-                        </div>
-                        <div class="col s4 center-align">
-                            <a class="waves-effect waves-light btn favs">El Zarape</a>
-                        </div>
-                        <div class="col s4 center-align">
-                            <a class="waves-effect waves-light btn favs">button</a>
-                        </div>
-                        <div class="col s4 center-align">
-                            <a class="waves-effect waves-light btn favs">button</a>
-                        </div>
-                        <div class="col s4 center-align">
-                            <a class="waves-effect waves-light btn favs">button</a>
-                        </div>
-                        <div class="col s4 center-align">
-                            <a class="waves-effect waves-light btn favs">button</a>
-                        </div>
-                        <div class="col s4 center-align">
-                            <a class="waves-effect waves-light btn favs">button</a>
-                        </div>
-                        <div class="col s4 center-align">
-                            <a class="waves-effect waves-light btn favs">button</a>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            </div>
+          <div class="col s12">
+            <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
+          </div>
         </div>
-
+        <div class="row right-align">
+        <div class="col s12">
+          <button class="btn waves-effect waves-light sidenav-trigger" id="myFavorites" data-target="slide-out" ><i class="material-icons right">favorite</i>my favorites</button>
+        </div>
+        </div>
+        
+      </div>
     </div>
+    
+    <!--Card for restaurant information-->   
+    <div class="row">
+      <div class="col s12 horizontal center-align">
+        <div class="card">
+          <div class="row center-align">
+            <div class="col s4">
+              <div class="card-image">
+                <!--Image provided by zomato: "featured_image" property-->
+                <div id="featuredImage">
+                  <img src="food.jpg">
+                </div>
+              </div>
+              <div class="card-content">
+                <!--Restaurant Name: "name" property-->
+                <div id="restaurant name">
+                  <span class="card-title" id="restaurantName">Cafe Brazil</span>
+                </div>
+              </div>
+            </div>
+            <div class="col s8">
+              <div id="restaurantInfo">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellat amet accusantium saepe distinctio, dicta ea unde vero quae incidunt, culpa iusto suscipit facilis perspiciatis. Consequuntur quo a corporis, dolorem eum, eos deleniti recusandae ut dignissimos nam totam veritatis? Voluptates earum dolorum fugit eos laudantium commodi eius voluptas labore doloribus sed provident aperiam dolores error totam corporis ipsam, asperiores deleniti exercitationem unde. Ab iste ea ratione dicta voluptatum consequatur facilis blanditiis quisquam, mollitia minima. Odio, vel. Ratione nobis temporibus officia, eum sapiente dolore commodi illum! Neque reprehenderit voluptas facere voluptatum maiores. Aperiam dolores libero ea nesciunt atque voluptatem, repellendus architecto minus porro quas dicta explicabo minima possimus fuga velit laborum doloremque esse sit, error deleniti impedit voluptates incidunt. Earum, cupiditate? Perspiciatis magnam placeat sunt illum quos libero. Perferendis alias, reprehenderit voluptates voluptatem quis consequatur doloremque exercitationem molestias, iure pariatur cupiditate ex rem deserunt nisi tempore ad optio quaerat explicabo. Iusto?</p>
+              </div>
+              <div id="restaurantButtons">
+                <a class="waves-effect waves-light btn-small"><i class="material-icons right">restaurant_menu</i>view full menu</a>
+                <a class="waves-effect waves-light btn-small"><i class="material-icons right">phone</i>call</a>
+              </div>
+              <!--Button to add restaurant to favorites list-->
+              <a id="favBtn" class="btn-floating halfway-fab waves-effect waves-light pink lighten-2"><i class="material-icons">favorite_border</i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--Card For Map-->
+    <div class="row ">
+      <div class="col s12 center-align">
+        <div class="card medium center-align">
+          <h4 style="padding-top:20px;">where it's at</h4>
+          <!--Append Map into below div-->
+          <div id="map">
+            <img src="map.png" alt="map" style="width: 500px;" class="card-image">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+
+  </div>
+  <script src="script.js"></script>
+
 
 </body>
-    
+
 
 </html>
