@@ -1,5 +1,5 @@
 /*Font styles for main headings*/
-h4, h5, nav, .card-title {
+h4, h5, nav, span, .card-title {
         font-family: 'Pacifico', cursive;
         color: navy
     }

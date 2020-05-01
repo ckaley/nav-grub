@@ -8,16 +8,12 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
-  
 </head>
 <body>
   <!--Header with app name-->
   <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper container">
       <a class="brand-logo center">NavGrub</a>
       
     </div>
@@ -35,7 +31,7 @@
     </div></li>
     <div id="favorites">
       <ul>
-
+        
       </ul>
     </div>
   </ul>
@@ -48,7 +44,7 @@
     <!--Card For Query Box-->
     <div class="row">
       <div class="col s12 card small center-align" style="height: fit-content">
-        <h4>find a place to eat</h4>
+        <span class="card-title">find a place to eat</span>
         <div class="row">
           <div class="col s6">
             <div class="input-field">
@@ -64,74 +60,73 @@
             </div>
           </div>
         </div>
-
+        
         <div class="row">
           <div class="col s12">
             <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">search<i class="material-icons right">send</i></button>
           </div>
         </div>
         <div class="row">
-        <div class="col s12">
-          <button class="btn waves-effect waves-light sidenav-trigger" id="myFavorites" data-target="slide-out" ><i class="material-icons right">favorite</i>my favorites</button>
-        </div>
+          <div class="col s12">
+            <button class="btn waves-effect waves-light sidenav-trigger" id="myFavorites" data-target="slide-out" ><i class="material-icons right">favorite</i>my favorites</button>
+          </div>
         </div>
         
       </div>
     </div>
     
     <!--Card for restaurant information. Will be appended to page dynamically-->   
-    <div class="row">
-      <div class="col s12 horizontal center-align">
-        <div class="card">
-          <div class="row center-align">
+    <div class="row" id="info"></div>
+    <div class="row" id="map"></div>
+    
+    
+  </div>
+  
+  
+  
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>  
+  <script src="script.js"></script>
+</body>
+
+
+</html>
+
+<!--
+  <div class="col s12 horizontal center-align" id="">
+    <div class="card">
+      <div class="row center-align">
             <div class="col s4">
               <div class="card-image">
-                <!--Image provided by zomato: "featured_image" property-->
                 <div id="featuredImage">
-                  <!--Append Image Here-->
                 </div>
               </div>
               <div class="card-content">
-                <!--Restaurant Name: "name" property-->
                 <div id="restaurant name">
-                  <!--APpend Restaurant Name Here. Use <span class="card-title"></span>-->
                 </div>
               </div>
             </div>
             <div class="col s8">
               <div id="restaurantInfo">
-                <!--Append restaurant info here-->
               </div>
               <div id="restaurantButtons">
-                <!--Append full menu button here. use <a class="waves-effect waves-light btn-small"><i class="material-icons right">restaurant_menu</i>view full menu</a> -->
-                <!--Append call restaurant button here. use <a class="waves-effect waves-light btn-small"><i class="material-icons right">phone</i>call</a>-->              </div>
-              <!--Button to add restaurant to favorites list-->
               <a id="favBtn" class="btn-floating halfway-fab waves-effect waves-light pink lighten-2"><i class="material-icons">favorite_border</i></a>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    -->
     
-    <!--Card For Map. will be appended to page dynamically-->
+    <!--
     <div class="row ">
       <div class="col s12 center-align">
         <div class="card medium center-align">
-          <h4 style="padding-top:20px;">where it's at</h4>
+          <span class="card-title" style="padding-top:20px;">where it's at</span>
           <div id="map">
-            <!--Append Map here-->
           </div>
         </div>
       </div>
     </div>
-    
-    
-
-  </div>
-  <script src="script.js"></script>
-
-
-</body>
-
-
-</html>
+  -->
