@@ -1,17 +1,16 @@
-//Slide Out NavBar for Favorites List
+//Slide Out NavBar for Favorites List - uses JS from materialize library
 $(document).ready(function(){
     $('.sidenav').sidenav();
   });
 
 
-//------------------------------------------------------------------------------------------------------------------------------
-//DYNAMICALLY GENERATED CONTENT
+/*------------------------------------------------------------------------------------------------------------------------------
+RESTAURANT INFO CARD: add this into the for-loop within the ajax call that grabs data from the 10 restaurants in the API's response
 
-/*Restaurant Info Card: add this into the for-loop that within the ajax call that grabs data from the 10 restaurants in the API's response
+This code should generate a card for each restaurant returned from the api.
 
-I made variables for a few of the data records that we can get back from zomato API. we can change or add more or less, just getting a few examples in here.
-We are probably going to need some if statements, in case a data record is null (for example, if there is nothing listed in "cuisines").
-----------------------*/
+I made variables for a few of the data records that we can get back from zomato API. we can change or add more or less, just getting a few examples in here.*/
+
 //variables for variables from response
 var restaurantImage = response.restaurants[i].restaurant.featured_image;
 var restaurantName = response.restaurants[i].restaurant.name;
@@ -60,5 +59,8 @@ infoCardCall.append(infoCardCallIcon);
 infoCardFav.append(infoCardFavIcon);
 
 
-
-//------------------------------------------------------------------------------------------------------------------------------
+/*Considerations/To-Do
+We are probably going to need some if statements, in case a data record is null (for example, if there is nothing listed in "cuisines").
+Need to figure out how to add an event listener to the CALL button that makes a smart phone call the number stored- and where to store it
+Event listeners for MENU and FAV buttons
+------------------------------------------------------------------------------------------------------------------------------------------*/
