@@ -4,14 +4,14 @@ $(document).ready(function(){
   });
 
 
-/*------------------------------------------------------------------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------------------------------------------------------------
 RESTAURANT INFO CARD: add this into the for-loop within the ajax call that grabs data from the 10 restaurants in the API's response
 
 This code should generate a card for each restaurant returned from the api.
 
 I made variables for a few of the data records that we can get back from zomato API. we can change or add more or less, just getting a few examples in here.*/
 
-//variables for variables from response
+//variables for values from response
 var restaurantImage = response.restaurants[i].restaurant.featured_image;
 var restaurantName = response.restaurants[i].restaurant.name;
 var cuisines = response.restaurants[i].restaurant.cuisines;
@@ -64,3 +64,53 @@ We are probably going to need some if statements, in case a data record is null 
 Need to figure out how to add an event listener to the CALL button that makes a smart phone call the number stored- and where to store it
 Event listeners for MENU and FAV buttons
 ------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------
+MAP CARD:
+
+*/
+
+//variables for values from response
+//var map = #;
+
+
+//elements variables
+var map = $("#map");
+var mapCard = $("<div>").attr("class", "card");
+var mapCardTitle = $("<div>").attr("class","card-title").text("Nav Your Grub")   //example text
+var mapCardMap = $("div").attr("class", "card-content") //not exactly sure how a map is treated (text, src, ???)
+
+//append elements to the page
+map.append(mapCard);
+mapCard.append(mapCardTitle, mapCardMap);
+
+/*
+
+--------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------
+FAVORITES SLIDE OUT: A button is created when the button id=#favBtn is clicked. THe event listener attached to that button will call the function addToFavs
+
+*/
+//var addToFavs = function(){
+
+  
+  //elements variables
+  var favorites = $("#favorites");
+  var favoritesLI = $("<li>");
+  var favoritesBtn = $("<a>").attr("class", "waves-effect waves-light btn-small").text(/*need to grab title from card on which fav button is located*/);
+  var favoritesBtnIcon = $("<i>").attr("class", "material-icons right").text("favorite");
+  
+
+  //append elements to the favorites slide out
+  favorites.append(favoritesLI);
+  favoritesLI.append(favoritesBtn);
+  favoritesBtn.append(favoritesBtnIcon);
+   
+  
+//}
+/*
+
+--------------------------------------------------------------------------------------------------------------------------------------------*/
