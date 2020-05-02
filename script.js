@@ -1,13 +1,15 @@
+// testing
 var map;
+
 function loadMapScenario() {
   console.log("loadMapScenario");
   map = new Microsoft.Maps.Map(document.getElementById("myMap"), {});
 }
+
 function GetMap() {
   console.log("GetMap");
   map = new Microsoft.Maps.Map("#myMap", {
-    credentials:
-      "ArULTIYfxQSEZ0tXfKIG0yg3EawTuXGpK82x19OPe74Gbi3l02v1M1WgGZnqmyHL",
+    credentials: "ArULTIYfxQSEZ0tXfKIG0yg3EawTuXGpK82x19OPe74Gbi3l02v1M1WgGZnqmyHL",
     center: new Microsoft.Maps.Location(39.93, -104.99),
   });
   var center = map.getCenter();
@@ -61,6 +63,7 @@ $(document).ready(function () {
       $("#city").text(cityName);
     });
   }
+
   function searchRestaurants() {
     //Using JQuery, set the text search paramter from the ID Field on the screen
     var search = $("#query").val();
