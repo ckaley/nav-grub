@@ -1,85 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-
-    <!-- Compiled and minified CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <!-- Page Content goes here -->
-      <!-- Navbar goes here -->
-      <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo right">Logo</a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
-          </ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NavGrub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <!-- Compiled and minified JavaScript -->
+</head>
+<body>
+  <!--Header with app name-->
+  <nav>
+    <div class="nav-wrapper container">
+      <a class="brand-logo center">NavGrub</a>
+      
+    </div>
+  </nav>
+  
+  <!--Slide out nav bar for favorite restaurants-->
+  <ul id="slide-out" class="sidenav">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img src="sidenavBackground.jpg" class="responsive-img">
         </div>
-      </nav>
-
-      <!-- Page Layout here -->
-      <div class="row">
-        <div class="col s12 m4 l4">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-            error labore explicabo atque, nesciunt quam aliquam. Mollitia,
-            aliquam ipsum accusamus incidunt fuga nihil error quae neque
-            aspernatur facilis beatae dolorem enim consequuntur accusantium cum
-            asperiores minus, quidem officiis reprehenderit quis, nam esse
-            voluptatibus exercitationem cupiditate. Tempora atque rem odit aut.
-            In possimus, nobis perferendis fugit, quia dolor, facilis aliquam
-            neque velit quas quod hic dicta dolorum accusantium officiis natus
-            blanditiis maiores? Dignissimos fugiat dolores tempora fuga quos
-            amet provident molestiae ea officiis, praesentium facere tempore,
-            quisquam maiores consequatur veniam. Ratione et alias perspiciatis,
-            ipsa earum ut repudiandae asperiores vero ad!
-          </p>
-        </div>
-
-        <div class="col s12 m8 l8">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-            voluptate doloremque nisi possimus! Voluptate rerum quibusdam
-            tenetur repellat nesciunt dolorum odit ut culpa quaerat vero earum
-            obcaecati velit maiores quae sapiente cum, iure enim quo architecto
-            ipsam blanditiis. Nemo ex eos amet animi, a laudantium officiis
-            nostrum adipisci, excepturi itaque, eveniet ab voluptate vel
-            voluptas voluptates architecto eius quam. Eius possimus nam
-            dignissimos minima totam similique et sunt quas ducimus, corporis
-            placeat est amet. Beatae autem praesentium sed libero officia,
-            repellat dolores commodi tenetur quisquam exercitationem omnis, ut,
-            delectus facilis sapiente. Facilis ut harum impedit praesentium,
-            distinctio quas et dignissimos.
-          </p>
-        </div>
+      <br>
+      <h5>favorites</h5>
+      <br><br>
       </div>
-      <footer class="page-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Footer Content</h5>
+    </li>
+    <div>
+      <ul id="favorites"></ul>
+    </div>
+  </ul>
+  
+  
+  <!--Main Body Content-->
+  <div class="container">
+    
+    
+    <!--Card For Query Box-->
+    <div class="row">
+      <div class="col s12 card small center-align" style="height: fit-content">
+        <span class="card-title">find a place to eat</span>
+        <div class="row">
+          <div class="col s6">
+            <div class="input-field">
+              <i class="material-icons prefix">location_city</i>
+              <input placeholder="City" class="validate" id="city">
+            </div>
+          </div>
+          <div class="col s6">
+            <div class="input-field">
+              <i class="material-icons prefix">search</i>
+              <input placeholder="Moe's Tavern, Ethiopian, etc" id="query">
+              <label class="active" for="city"></label>
             </div>
           </div>
         </div>
-        <div class="footer-copyright">
-          <div class="container">
-            © 2020 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        
+        <div class="row">
+          <div class="col s12">
+            <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">search<i class="material-icons right">send</i></button>
           </div>
         </div>
-      </footer>
+        <div class="row">
+          <div class="col s12">
+            <button class="btn waves-effect waves-light sidenav-trigger" id="myFavorites" data-target="slide-out" ><i class="material-icons right">favorite</i>my favorites</button>
+          </div>
+        </div>
+        
+      </div>
     </div>
+    
+    <!--Card for restaurant information. Will be appended to page dynamically-->   
+    <div class="row" id="info"></div>
+    <div class="row" id="map"></div>
+    
+    
+  </div>
+  
+  
+  
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>  
+  <script src="script.js"></script>
+</body>
 
-    <script src="script.js" />
-  </body>
+
 </html>
+
+<!--
+  <div class="col s12 horizontal center-align" id="">
+    <div class="card">
+      <div class="row center-align">
+            <div class="col s4">
+              <div class="card-image">
+                <div id="featuredImage">
+                </div>
+              </div>
+              <div class="card-content">
+                <div id="restaurant name">
+                </div>
+              </div>
+            </div>
+            <div class="col s8">
+              <div id="restaurantInfo">
+              </div>
+              <div id="restaurantButtons">
+              <a id="favBtn" class="btn-floating halfway-fab waves-effect waves-light pink lighten-2"><i class="material-icons">favorite_border</i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    -->
+    
+    <!--
+    <div class="row ">
+      <div class="col s12 center-align">
+        <div class="card medium center-align">
+          <span class="card-title" style="padding-top:20px;">where it's at</span>
+          <div id="map">
+          </div>
+        </div>
+      </div>
+    </div>
+  -->

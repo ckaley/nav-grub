@@ -1,1 +1,27 @@
+/*Font styles for main headings*/
+h4, h5, nav, span, .card-title {
+        font-family: 'Pacifico', cursive;
+        color: navy
+    }
+h6 {
+    color: navy
 
+}
+
+/*Coloring for header nav bar*/
+nav {
+        background-color: navy;
+    }
+    
+/*Coloring for buttons*/
+.btn, .btn-small {
+        background-color:#ff56b4;
+    }
+
+/*Sizes the image from zomato appropriately*/
+#foodImg {
+        max-height: fit-content;
+    }
+
+    
+    
