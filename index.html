@@ -1,97 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NavGrub</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <!-- Compiled and minified JavaScript -->
-</head>
-<body>
-  <!--Header with app name-->
-  <nav>
-    <div class="nav-wrapper container">
-      <a class="brand-logo center">NavGrub</a>
-      
-    </div>
-  </nav>
-  
-  <!--Slide out nav bar for favorite restaurants-->
-  <ul id="slide-out" class="sidenav">
-    <li>
-      <div class="user-view">
-        <div class="background">
-          <img src="sidenavBackground.jpg" class="responsive-img">
-        </div>
-      <br>
-      <h5>favorites</h5>
-      <br><br>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NavGrub</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Compiled and minified JavaScript -->
+  </head>
+  <body>
+    <!--Header with app name-->
+    <nav>
+      <div class="nav-wrapper container">
+        <a class="brand-logo center">NavGrub</a>
       </div>
-    </li>
-    <div>
-      <ul id="favorites"></ul>
-    </div>
-  </ul>
-  
-  
-  <!--Main Body Content-->
-  <div class="container">
-    
-    
-    <!--Card For Query Box-->
-    <div class="row">
-      <div class="col s12 card small center-align" style="height: fit-content">
-        <span class="card-title">find a place to eat</span>
-        <div class="row">
-          <div class="col s6">
-            <div class="input-field">
-              <i class="material-icons prefix">location_city</i>
-              <input placeholder="City" class="validate" id="city">
+    </nav>
+
+    <!--Slide out nav bar for favorite restaurants-->
+    <ul id="slide-out" class="sidenav">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img src="sidenavBackground.jpg" class="responsive-img" />
+          </div>
+          <br />
+          <h5>favorites</h5>
+          <br /><br />
+        </div>
+      </li>
+      <div>
+        <ul id="favorites"></ul>
+      </div>
+    </ul>
+
+    <!--Main Body Content-->
+    <div class="container">
+      <!--Card For Query Box-->
+      <div class="row">
+        <div
+          class="col s12 card small center-align"
+          style="height: fit-content;"
+        >
+          <span class="card-title">find a place to eat</span>
+          <div class="row">
+            <div class="col s6">
+              <div class="card-content">
+                <i class="material-icons prefix">location_city</i>
+                <h5 placeholder="City" class="validate" id="city"></h5>
+              </div>
+            </div>
+            <div class="col s6">
+              <div class="input-field">
+                <i class="material-icons prefix">search</i>
+                <input placeholder="Moe's Tavern, Ethiopian, etc" id="query" />
+                <label class="active" for="city"></label>
+              </div>
             </div>
           </div>
-          <div class="col s6">
-            <div class="input-field">
-              <i class="material-icons prefix">search</i>
-              <input placeholder="Moe's Tavern, Ethiopian, etc" id="query">
-              <label class="active" for="city"></label>
+
+          <div class="row">
+            <div class="col s12">
+              <button
+                class="btn waves-effect waves-light"
+                id="submit"
+                type="submit"
+                name="action"
+              >
+                search<i class="material-icons right">send</i>
+              </button>
+              <button
+                class="btn waves-effect waves-light"
+                id="test"
+                type="submit"
+                name="action"
+              >
+                Test<i class="material-icons right">send</i>
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <button
+                class="btn waves-effect waves-light sidenav-trigger"
+                id="myFavorites"
+                data-target="slide-out"
+              >
+                <i class="material-icons right">favorite</i>my favorites
+              </button>
             </div>
           </div>
         </div>
-        
-        <div class="row">
-          <div class="col s12">
-            <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">search<i class="material-icons right">send</i></button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s12">
-            <button class="btn waves-effect waves-light sidenav-trigger" id="myFavorites" data-target="slide-out" ><i class="material-icons right">favorite</i>my favorites</button>
-          </div>
-        </div>
-        
       </div>
+
+      <!--Card for restaurant information. Will be appended to page dynamically-->
+      <div class="row" id="info"></div>
+      <div class="row" id="map"></div>
     </div>
-    
-    <!--Card for restaurant information. Will be appended to page dynamically-->   
-    <div class="row" id="info"></div>
-    <div class="row" id="map"></div>
-    
-    
-  </div>
-  
-  
-  
-  
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>  
-  <script src="script.js"></script>
-</body>
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
 
 <!--
@@ -118,8 +138,8 @@
         </div>
       </div>
     -->
-    
-    <!--
+
+<!--
     <div class="row ">
       <div class="col s12 center-align">
         <div class="card medium center-align">
