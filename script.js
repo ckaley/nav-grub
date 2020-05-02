@@ -44,7 +44,7 @@ $(document).ready(function () {
       console.log(entity_id);
       console.log(cityName);
       //Using JQuery, set the display of the field on the browser with the cityname
-      //$("#CityName").text(cityName);
+      $("#city").text(cityName);
     });
   }
 
