@@ -3,6 +3,9 @@ h4, h5, nav, span, .card-title {
         font-family: 'Pacifico', cursive;
         color: navy
     }
+h6 {
+    color: navy
+}
 
 /*Coloring for header nav bar*/
 nav {
