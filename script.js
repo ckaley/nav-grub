@@ -1,7 +1,21 @@
+var map;
+function loadMapScenario() {
+  console.log("loadMapScenario");
+  map = new Microsoft.Maps.Map(document.getElementById("myMap"), {});
+}
+function GetMap() {
+  console.log("GetMap");
+  map = new Microsoft.Maps.Map("#myMap", {
+    credentials:
+      "ArULTIYfxQSEZ0tXfKIG0yg3EawTuXGpK82x19OPe74Gbi3l02v1M1WgGZnqmyHL",
+    center: new Microsoft.Maps.Location(39.93, -104.99),
+  });
+  var center = map.getCenter();
+  console.log(center);
+}
 $(document).ready(function () {
   //Slide Out NavBar for Favorites List - uses JS from materialize library
   $(".sidenav").sidenav();
-
   //Define Global Variables
   var entity_id = ""; //Used in the Zomato Search, represents the city
   var entity_type = "city"; //Used in teh API call for Zomato Search
@@ -11,7 +25,6 @@ $(document).ready(function () {
   var cityName = ""; //String Name of teh City
   var maxResults = 10; //This represents the maximum number of restaurants that the api will return
   var restArray = [];
-
   //Asynchronous function to get the User's browser location.  Utilize
   //getCityName() as the callback function once a value is received back
   function getUserLocation() {
@@ -21,13 +34,11 @@ $(document).ready(function () {
       console.log("Geolocation is not supported by this browser.");
     }
   }
-
   // This function is called once the browser returns the latitude and
   //longitude of the user's broswer
   function getCityName(position) {
     cityLatitude = position.coords.latitude;
     cityLongitude = position.coords.longitude;
-
     //Construct Query URL with criteria to obtain the city the User is located in
     var queryURL =
       "https://developers.zomato.com/api/v2.1/cities?apikey=" +
@@ -36,7 +47,6 @@ $(document).ready(function () {
       cityLatitude +
       "&lon=" +
       cityLongitude;
-
     //Ajax call to Zomato API that will return an array of 1, which is then used
     //to set the Global variables entity_ID and cityName
     $.ajax({
@@ -51,12 +61,10 @@ $(document).ready(function () {
       $("#city").text(cityName);
     });
   }
-
   function searchRestaurants() {
     //Using JQuery, set the text search paramter from the ID Field on the screen
     var search = $("#query").val();
     //var search = "Italian";
-
     //Construct Query URL with criteria to obtain the list of resatuants in the
     //city the user is located
     var queryURL =
@@ -70,7 +78,6 @@ $(document).ready(function () {
       search +
       "&count=" +
       maxResults;
-
     $.ajax({
       url: queryURL,
       method: "GET",
@@ -95,28 +102,39 @@ $(document).ready(function () {
       }
       console.log(response);
       console.log(restArray);
+      loadMapScenario();
+      GetMap();
+      pinToMap(restArray);
     });
   }
-
+  // function for adding pins to map
+  function pinToMap(restArray) {
+    // loop through restArray array and pin each restaurant
+    for (var i = 0; i < restArray.length; i++) {
+      //inside loop...
+      pin = new Microsoft.Maps.Pushpin(restArray[i], {
+        title: restArray[i].name,
+        subTitle: "",
+      });
+      map.entities.push(pin);
+    }
+    console.log("Restaurant Plots:  ", restArray);
+  }
   //Get User location once the document is ready
   getUserLocation();
-
   //Used to invoke search of restaurants
   $("#submit").on("click", function () {
     searchRestaurants();
   });
-
   //Used to invoke search of restaurants
   $("#test").on("click", function () {
     //console.log(restArray);
     populateCard();
+    // pinToMap();
   });
-
   // /*-----------------------------------------------------------------------------------------------------------------------------------------
   // RESTAURANT INFO CARD: add this into the for-loop within the ajax call that grabs data from the 10 restaurants in the API's response
-
   // This code should generate a card for each restaurant returned from the api.
-
   // I made variables for a few of the data records that we can get back from zomato API. we can change or add more or less, just getting a few examples in here.*/
   function populateCard() {
     // //element variables
@@ -161,7 +179,6 @@ $(document).ready(function () {
       var infoCardFavIcon = $("<i>")
         .attr("class", "material-icons")
         .text("favorite_border");
-
       //append elements to the page
       info.append(infoCol);
       infoCol.append(infoCard);
@@ -182,54 +199,40 @@ $(document).ready(function () {
       // infoCardFav.append(infoCardFavIcon);
     }
   }
-
   // /*Considerations/To-Do
   // We are probably going to need some if statements, in case a data record is null (for example, if there is nothing listed in "cuisines").
   // Need to figure out how to add an event listener to the CALL button that makes a smart phone call the number stored- and where to store it
   // Event listeners for MENU and FAV buttons
   // ------------------------------------------------------------------------------------------------------------------------------------------*/
-
   // /*-----------------------------------------------------------------------------------------------------------------------------------------
   // MAP CARD:
-
   // */
-
   // //variables for values from response
   // //var map = #;
-
   // //elements variables
   // var map = $("#map");
   // var mapCard = $("<div>").attr("class", "card");
   // var mapCardTitle = $("<div>").attr("class","card-title").text("Nav Your Grub")   //example text
   // var mapCardMap = $("div").attr("class", "card-content") //not exactly sure how a map is treated (text, src, ???)
-
   // //append elements to the page
   // map.append(mapCard);
   // mapCard.append(mapCardTitle, mapCardMap);
-
   // /*
-
   // --------------------------------------------------------------------------------------------------------------------------------------------*/
-
   // /*-----------------------------------------------------------------------------------------------------------------------------------------
   // FAVORITES SLIDE OUT: A button is created when the button id=#favBtn is clicked. THe event listener attached to that button will call the function addToFavs
-
   // */
   // //var addToFavs = function(){
-
   //   //elements variables
   //   var favorites = $("#favorites");
   //   var favoritesLI = $("<li>");
   //   var favoritesBtn = $("<a>").attr("class", "waves-effect waves-light btn-small").text(/*need to grab title from card on which fav button is located*/);
   //   var favoritesBtnIcon = $("<i>").attr("class", "material-icons right").text("favorite");
-
   //   //append elements to the favorites slide out
   //   favorites.append(favoritesLI);
   //   favoritesLI.append(favoritesBtn);
   //   favoritesBtn.append(favoritesBtnIcon);
-
   // //}
   // /*
-
   //--------------------------------------------------------------------------------------------------------------------------------------------*/
 });

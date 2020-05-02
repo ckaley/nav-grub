@@ -18,6 +18,10 @@
     />
     <link href="css/styles.css" rel="stylesheet" />
     <!-- Compiled and minified JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://www.bing.com/api/maps/mapcontrol?key=ArULTIYfxQSEZ0tXfKIG0yg3EawTuXGpK82x19OPe74Gbi3l02v1M1WgGZnqmyHL"
+    ></script>
   </head>
   <body>
     <!--Header with app name-->
@@ -26,7 +30,6 @@
         <a class="brand-logo center">NavGrub</a>
       </div>
     </nav>
-
     <!--Slide out nav bar for favorite restaurants-->
     <ul id="slide-out" class="sidenav">
       <li>
@@ -43,7 +46,6 @@
         <ul id="favorites"></ul>
       </div>
     </ul>
-
     <!--Main Body Content-->
     <div class="container">
       <!--Card For Query Box-->
@@ -68,7 +70,6 @@
               </div>
             </div>
           </div>
-
           <div class="row">
             <div class="col s12">
               <button
@@ -102,18 +103,16 @@
           </div>
         </div>
       </div>
-
       <!--Card for restaurant information. Will be appended to page dynamically-->
       <div class="row" id="info"></div>
       <div class="row" id="map"></div>
     </div>
-
+    <div class="row" id="myMap" style="width: 80vw; height: 80vh;"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
-
 <!--
   <div class="col s12 horizontal center-align" id="">
     <div class="card">
@@ -138,7 +137,6 @@
         </div>
       </div>
     -->
-
 <!--
     <div class="row ">
       <div class="col s12 center-align">
