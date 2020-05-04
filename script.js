@@ -264,6 +264,12 @@ $(document).ready(function () {
     }
   }   
   getFavHist();
-  console.log(favoritesArray)
 
+  //event listener for favorites slide out ---- need to figure out how to pass this.text as an argument in the search restaurants function...or we create a whole new version of the api fetch and it only returns 1 restaurant
+    $("#favorites").on("click", "li", function(){
+    searchRestaurants($(this).text());
+    console.log($(this).text())
+  })
+
+  
 });
