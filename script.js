@@ -172,10 +172,8 @@ $(document).ready(function () {
       var infoCardCallIcon = $("<i>")
         .attr("class", "material-icons right")
         .text("phone");
-      var infoCardFav = $("<a>").attr("id","favBtn"+[i]).addClass("btn-floating halfway-fab waves-effect waves-light pink lighten-2");
-      var infoCardFavIcon = $("<i>")
-        .attr("class", "material-icons")
-        .text("favorite_border");
+      var infoCardFav = $("<a>").attr("id","favBtn"+[i]).addClass("btn-floating halfway-fab waves-effect waves-light pink lighten-2").val(restArray[i].name);
+      var infoCardFavIcon = $("<i>").attr("class", "material-icons").text("favorite_border");
 
 
       //append elements to the page
@@ -197,8 +195,16 @@ $(document).ready(function () {
       // infoCardCall.append(infoCardCallIcon);
       infoCardFav.append(infoCardFavIcon);
     
-      //event listener for fav button
-      $("#favBtn"+[i]).on("click", addToFavorites);
+      //add event listener for fav button
+      $("#favBtn"+[i]).on("click", function(){
+        console.log($(this).val())
+        var favorites = $("#favorites");
+        var favoritesLI = $("<li>");
+        var favoritesBtn = $("<a>").attr("class", "waves-effect waves-light btn-small").text($(this).val());
+        //append elements to the favorites slide out
+        favorites.append(favoritesLI);
+        favoritesLI.append(favoritesBtn);
+      });
     }
  
 
@@ -227,23 +233,19 @@ $(document).ready(function () {
   // /*-----------------------------------------------------------------------------------------------------------------------------------------
   // FAVORITES SLIDE OUT: A button is created when the button id=#favBtn is clicked. The event listener attached to that button will call the function addToFavs
   // */
-  // //var addToFavs = function(){
-  //   //elements variables
-  //   var favorites = $("#favorites");
-  //   var favoritesLI = $("<li>");
-  //   var favoritesBtn = $("<a>").attr("class", "waves-effect waves-light btn-small").text(/*need to grab title from card on which fav button is located*/);
-  //   var favoritesBtnIcon = $("<i>").attr("class", "material-icons right").text("favorite");
-  //   //append elements to the favorites slide out
-  //   favorites.append(favoritesLI);
-  //   favoritesLI.append(favoritesBtn);
-  //   favoritesBtn.append(favoritesBtnIcon);
-  // //}
+    // var addToFavs = function(){
+    // //elements variables
+    // var favorites = $("#favorites");
+    // var favoritesLI = $("<li>");
+    // var favoritesBtn = $("<a>").attr("class", "waves-effect waves-light btn-small").text(/*need to grab title from card on which fav button is located*/);
+    // var favoritesBtnIcon = $("<i>").attr("class", "material-icons right").text("favorite");
+    // //append elements to the favorites slide out
+    // favorites.append(favoritesLI);
+    // favoritesLI.append(favoritesBtn);
+    // favoritesBtn.append(favoritesBtnIcon);
+  //}
   // /*
   //--------------------------------------------------------------------------------------------------------------------------------------------*/
 
-
-function addToFavorites(){
-  console.log("clicked");
-}
 
 });
