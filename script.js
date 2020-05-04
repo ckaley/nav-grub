@@ -17,6 +17,8 @@ function GetMap() {
 $(document).ready(function () {
   //Slide Out NavBar for Favorites List - uses JS from materialize library
   $(".sidenav").sidenav();
+
+
   //Define Global Variables
   var entity_id = ""; //Used in the Zomato Search, represents the city
   var entity_type = "city"; //Used in teh API call for Zomato Search
@@ -26,7 +28,7 @@ $(document).ready(function () {
   var cityName = ""; //String Name of the City
   var maxResults = 10; //This represents the maximum number of restaurants that the api will return
   var restArray = [];
-  
+  var favoritesArray = [];
   
   
   //Asynchronous function to get the User's browser location.  Utilize
@@ -197,18 +199,21 @@ $(document).ready(function () {
       // infoCardCall.append(infoCardCallIcon);
       infoCardFav.append(infoCardFavIcon);
     
-      //add event listener for fav button
-      $("#favBtn"+[i]).on("click", function(){
-        console.log($(this).val())
-        var favorites = $("#favorites");
-        var favoritesLI = $("<li>");
-        var favoritesBtn = $("<a>").attr("class", "waves-effect waves-light btn-small").text($(this).val());
-        //append elements to the favorites slide out
-        favorites.append(favoritesLI);
-        favoritesLI.append(favoritesBtn);
-      });
-    }
-
+      //add event listener for fav button on each restaurant card
+      $("#favBtn"+[i]).on("click", function(event){
+        event.preventDefault();
+        //add favorited restaturant to array and then add to local storage
+        if (favoritesArray.indexOf($(this).val()) === -1) {
+          //add new favorite restaurant to array
+          favoritesArray.push($(this).val())
+          //save array to local storage
+          localStorage.setItem("favsStorage", JSON.stringify(favoritesArray));
+          //re-append all array items to favorites menu
+          getFavHist();
+        }
+        });
+      }
+    
   }
   // /*Considerations/To-Do
   // We are probably going to need some if statements, in case a data record is null (for example, if there is nothing listed in "cuisines").
@@ -231,7 +236,34 @@ $(document).ready(function () {
   // /*
   // --------------------------------------------------------------------------------------------------------------------------------------------*/
   // /*-----------------------------------------------------------------------------------------------------------------------------------------
-
-
+  
+  //function that grabs all favorited restaurants from local storage and adds them as buttons to the favorites slide out
+  function getFavHist(){
+  console.log(favoritesArray)
+    
+    //grab items from local history
+    var fromStor = localStorage.getItem("favsStorage");
+    //parse items from local history
+    fromStor = JSON.parse(fromStor);
+    //dump favorites array
+    favoritesArray = [];
+    //loop through items from local storage adding each to favoritesArray (if the array from storage is not null)
+    if (fromStor !== null){
+      for (var i = 0; i < fromStor.length; i++){
+        favoritesArray.push(fromStor[i]);
+      }
+    }
+    //add each to the favorites slide out in the form of a button
+    var favorites = $("#favorites");
+    favorites.empty();
+    for (var i = 0; i < favoritesArray.length; i++){
+        var favoritesLI = $("<li>");
+        var favoritesBtn = $("<a>").attr("class", "waves-effect waves-light btn-small").text(favoritesArray[i])
+        favorites.append(favoritesLI);
+        favoritesLI.append(favoritesBtn);          
+    }
+  }   
+  getFavHist();
+  console.log(favoritesArray)
 
 });
