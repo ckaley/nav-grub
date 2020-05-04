@@ -2,6 +2,15 @@ var map;
 
 function loadMapScenario() {
   console.log("loadMapScenario");
+  // //set up page elements
+  // //elements variables
+  // var mapID = $("#map");
+  // var mapCard = $("<div>").attr("class", "card");
+  // var mapCardTitle = $("<div>").attr("class","card-title").text("Nav Your Grub")   //example text
+  // var mapCardMap = $("div").attr("class", "card-content", "id", "myMap").css("width", "80vw", "height", "80vw")
+  // //append elements to the page
+  // mapID.append(mapCard);
+  // mapCard.append(mapCardTitle, mapCardMap);
   map = new Microsoft.Maps.Map(document.getElementById("myMap"), {});
 }
 
@@ -120,6 +129,8 @@ $(document).ready(function () {
       populateCard();
     });
   }
+
+
   // function for adding pins to map
   function pinToMap(restArray) {
     // loop through restArray array and pin each restaurant
@@ -215,28 +226,14 @@ $(document).ready(function () {
       }
     
   }
-  // /*Considerations/To-Do
-  // We are probably going to need some if statements, in case a data record is null (for example, if there is nothing listed in "cuisines").
-  // Need to figure out how to add an event listener to the CALL button that makes a smart phone call the number stored- and where to store it
-  // Event listeners for MENU and FAV buttons
-  // ------------------------------------------------------------------------------------------------------------------------------------------*/
-  // /*-----------------------------------------------------------------------------------------------------------------------------------------
-  // MAP CARD:
-  // */
-  // //variables for values from response
-  // //var map = #;
-  // //elements variables
-  // var map = $("#map");
-  // var mapCard = $("<div>").attr("class", "card");
-  // var mapCardTitle = $("<div>").attr("class","card-title").text("Nav Your Grub")   //example text
-  // var mapCardMap = $("div").attr("class", "card-content") //not exactly sure how a map is treated (text, src, ???)
-  // //append elements to the page
-  // map.append(mapCard);
-  // mapCard.append(mapCardTitle, mapCardMap);
-  // /*
-  // --------------------------------------------------------------------------------------------------------------------------------------------*/
-  // /*-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
   
+
   //function that grabs all favorited restaurants from local storage and adds them as buttons to the favorites slide out
   function getFavHist(){
   console.log(favoritesArray)
