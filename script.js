@@ -23,9 +23,12 @@ $(document).ready(function () {
   var apiKey = "75b4586940c208d07b537c70b9182501"; //API Key for Zomato
   var cityLatitude = 0; //Stores the latitude of the user's browser
   var cityLongitude = 0; // Stores the longitude of the user's broswer
-  var cityName = ""; //String Name of teh City
+  var cityName = ""; //String Name of the City
   var maxResults = 10; //This represents the maximum number of restaurants that the api will return
   var restArray = [];
+  
+  
+  
   //Asynchronous function to get the User's browser location.  Utilize
   //getCityName() as the callback function once a value is received back
   function getUserLocation() {
@@ -64,6 +67,11 @@ $(document).ready(function () {
   }
 
   function searchRestaurants() {
+    //empty the page and clear the array (clear prior results)
+    $("#info").empty();
+    restArray = []
+    console.log("empty")
+
     //Using JQuery, set the text search paramter from the ID Field on the screen
     var search = $("#query").val();
     //var search = "Italian";
@@ -169,7 +177,6 @@ $(document).ready(function () {
         .text("phone");
       var infoCardFav = $("<a>").attr("id","favBtn"+[i]).addClass("btn-floating halfway-fab waves-effect waves-light pink lighten-2").val(restArray[i].name);
       var infoCardFavIcon = $("<i>").attr("class", "material-icons").text("favorite_border");
-
 
       //append elements to the page
       info.append(infoCol);
