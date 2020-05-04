@@ -1,4 +1,3 @@
-// testing
 var map;
 
 function loadMapScenario() {
@@ -173,15 +172,12 @@ $(document).ready(function () {
       var infoCardCallIcon = $("<i>")
         .attr("class", "material-icons right")
         .text("phone");
-      var infoCardFav = $("<a>").attr(
-        "class",
-        "btn-floating halfway-fab waves-effect waves-light pink lighten-2",
-        "id",
-        "favBtn"
-      );
+      var infoCardFav = $("<a>").attr("id","favBtn"+[i]).addClass("btn-floating halfway-fab waves-effect waves-light pink lighten-2");
       var infoCardFavIcon = $("<i>")
         .attr("class", "material-icons")
         .text("favorite_border");
+
+
       //append elements to the page
       info.append(infoCol);
       infoCol.append(infoCard);
@@ -190,17 +186,23 @@ $(document).ready(function () {
       infoCardColL.append(infoCardImage, infoCardContent);
       infoCardImage.append(featuredImage);
       infoCardContent.append(infoCardTitle);
-      // infoCardColR.append(
-      //   infoCardDetails,
-      //   infoCardMenu,
-      //   infoCardCall,
-      //   infoCardFav
-      // );
+      infoCardColR.append(
+      //infoCardDetails,
+      infoCardMenu,
+      infoCardCall,
+      infoCardFav
+      );
       // infoCardDetails.append(infoCardCuisines); //, infoCardHours, infoCardHood, infoCardAddress);
       // infoCardMenu.append(infoCardMenuIcon);
       // infoCardCall.append(infoCardCallIcon);
-      // infoCardFav.append(infoCardFavIcon);
+      infoCardFav.append(infoCardFavIcon);
+    
+      //event listener for fav button
+      $("#favBtn"+[i]).on("click", addToFavorites);
     }
+ 
+
+
   }
   // /*Considerations/To-Do
   // We are probably going to need some if statements, in case a data record is null (for example, if there is nothing listed in "cuisines").
@@ -223,7 +225,7 @@ $(document).ready(function () {
   // /*
   // --------------------------------------------------------------------------------------------------------------------------------------------*/
   // /*-----------------------------------------------------------------------------------------------------------------------------------------
-  // FAVORITES SLIDE OUT: A button is created when the button id=#favBtn is clicked. THe event listener attached to that button will call the function addToFavs
+  // FAVORITES SLIDE OUT: A button is created when the button id=#favBtn is clicked. The event listener attached to that button will call the function addToFavs
   // */
   // //var addToFavs = function(){
   //   //elements variables
@@ -238,4 +240,10 @@ $(document).ready(function () {
   // //}
   // /*
   //--------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+function addToFavorites(){
+  console.log("clicked");
+}
+
 });
