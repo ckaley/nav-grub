@@ -107,6 +107,7 @@ $(document).ready(function () {
       loadMapScenario();
       GetMap();
       pinToMap(restArray);
+      populateCard();
     });
   }
   // function for adding pins to map
@@ -128,16 +129,10 @@ $(document).ready(function () {
   $("#submit").on("click", function () {
     searchRestaurants();
   });
-  //Used to invoke search of restaurants
-  $("#test").on("click", function () {
-    //console.log(restArray);
-    populateCard();
-    // pinToMap();
-  });
-  // /*-----------------------------------------------------------------------------------------------------------------------------------------
-  // RESTAURANT INFO CARD: add this into the for-loop within the ajax call that grabs data from the 10 restaurants in the API's response
-  // This code should generate a card for each restaurant returned from the api.
-  // I made variables for a few of the data records that we can get back from zomato API. we can change or add more or less, just getting a few examples in here.*/
+
+
+
+  // function that creates info cards for each restaurant returned from the api
   function populateCard() {
     // //element variables
     for (var i = 0; i < restArray.length; i++) {
@@ -206,8 +201,6 @@ $(document).ready(function () {
         favoritesLI.append(favoritesBtn);
       });
     }
- 
-
 
   }
   // /*Considerations/To-Do
@@ -231,21 +224,7 @@ $(document).ready(function () {
   // /*
   // --------------------------------------------------------------------------------------------------------------------------------------------*/
   // /*-----------------------------------------------------------------------------------------------------------------------------------------
-  // FAVORITES SLIDE OUT: A button is created when the button id=#favBtn is clicked. The event listener attached to that button will call the function addToFavs
-  // */
-    // var addToFavs = function(){
-    // //elements variables
-    // var favorites = $("#favorites");
-    // var favoritesLI = $("<li>");
-    // var favoritesBtn = $("<a>").attr("class", "waves-effect waves-light btn-small").text(/*need to grab title from card on which fav button is located*/);
-    // var favoritesBtnIcon = $("<i>").attr("class", "material-icons right").text("favorite");
-    // //append elements to the favorites slide out
-    // favorites.append(favoritesLI);
-    // favoritesLI.append(favoritesBtn);
-    // favoritesBtn.append(favoritesBtnIcon);
-  //}
-  // /*
-  //--------------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 
 });
