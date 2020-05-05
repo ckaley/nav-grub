@@ -2,15 +2,6 @@ var map;
 
 function loadMapScenario() {
   console.log("loadMapScenario");
-  // //set up page elements
-  // //elements variables
-  // var mapID = $("#map");
-  // var mapCard = $("<div>").attr("class", "card");
-  // var mapCardTitle = $("<div>").attr("class","card-title").text("Nav Your Grub")   //example text
-  // var mapCardMap = $("div").attr("class", "card-content", "id", "myMap").css("width", "80vw", "height", "80vw")
-  // //append elements to the page
-  // mapID.append(mapCard);
-  // mapCard.append(mapCardTitle, mapCardMap);
   map = new Microsoft.Maps.Map(document.getElementById("myMap"), {});
 }
 
@@ -18,14 +9,26 @@ function GetMap() {
   console.log("GetMap");
   map = new Microsoft.Maps.Map("#myMap", {
     credentials: "ArULTIYfxQSEZ0tXfKIG0yg3EawTuXGpK82x19OPe74Gbi3l02v1M1WgGZnqmyHL",
-    center: new Microsoft.Maps.Location(39.93, -104.99),
+    center: new Microsoft.Maps.Location(39.73, -104.99),
+    zoom: 13.5
   });
-  var center = map.getCenter();
-  console.log(center);
+  // var center = map.getCenter();
+  // console.log(center);
 }
 $(document).ready(function () {
   //Slide Out NavBar for Favorites List - uses JS from materialize library
   $(".sidenav").sidenav();
+
+
+
+  $("#mapButton").click(function () {
+      var elmnt = document.getElementById("myMap");
+  elmnt.scrollIntoView();
+  });
+
+
+
+
 
 
   //Define Global Variables
@@ -104,21 +107,15 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       for (var i = 0; i < response.restaurants.length; i++) {
-        var restaurantObject = {
-          name: "",
-          cuisine: "",
-          latitude: "",
-          longitude: "",
-          image: "",
-        };
+        var restaurantObject = {};
         restaurantObject.name = response.restaurants[i].restaurant.name;
+        restaurantObject.address = response.restaurants[i].restaurant.location.address;
+        restaurantObject.hours = response.restaurants[i].restaurant.timings;
+        restaurantObject.hood = response.restaurants[i].restaurant.location.locality_verbose;
         restaurantObject.cuisine = response.restaurants[i].restaurant.cuisines;
-        restaurantObject.latitude =
-          response.restaurants[i].restaurant.location.latitude;
-        restaurantObject.longitude =
-          response.restaurants[i].restaurant.location.longitude;
-        restaurantObject.image =
-          response.restaurants[i].restaurant.featured_image;
+        restaurantObject.latitude = response.restaurants[i].restaurant.location.latitude;
+        restaurantObject.longitude = response.restaurants[i].restaurant.location.longitude;
+        restaurantObject.image = response.restaurants[i].restaurant.featured_image;
         restArray.push(restaurantObject);
       }
       console.log(response);
@@ -169,46 +166,37 @@ $(document).ready(function () {
       var infoCardTitle = $("<span>")
         .attr("class", "card-title")
         .text(restArray[i].name);
-      var infoCardDetails = $("div");
-      var infoCardCuisines = $("<p>").text(
-        "Cuisine Offerings: " + restArray[i].cuisine
-      );
-      //var infoCardHours = $("<p>").text("Hours: " + hours);
-      //var infoCardAddress = $("<p>").text("Address: " + address);
-      //var infoCardHood = $("<p>").text(neighborhood);
-      var infoCardMenu = $("<a>")
-        .attr("class", "waves-effect waves-light btn", "id", "menuBtn")
-        .text("VIEW FULL MENU");
-      var infoCardMenuIcon = $("<i>")
-        .attr("class", "material-icons right")
-        .text("restaurant_menu");
-      var infoCardCall = $("<a>")
-        .attr("class", "waves-effect waves-light btn", "id", "callBtn")
-        .text("CALL");
-      var infoCardCallIcon = $("<i>")
-        .attr("class", "material-icons right")
-        .text("phone");
+      var infoCardDetails = $("<div>");
+      var infoCardCuisines = $("<p>").text("Cuisine Offerings: " + restArray[i].cuisine);
+      var infoCardHours = $("<p>").text("Hours: " + restArray[i].hours);
+      var infoCardAddress = $("<p>").text("Address: " + restArray[i].address);
+      var infoCardHood = $("<p>").text(restArray[i].hood);
+      var infoCardMenu = $("<a>").attr("class", "waves-effect waves-light btn", "id", "menuBtn").text("VIEW FULL MENU");
+      // //var infoCardMenuIcon = $("<i>")
+      //   .attr("class", "material-icons right")
+      //   .text("restaurant_menu");
+      // var infoCardCall = $("<a>")
+      //   .attr("class", "waves-effect waves-light btn", "id", "callBtn")
+      //   .text("CALL");
+      // var infoCardCallIcon = $("<i>")
+      //   .attr("class", "material-icons right")
+      //   .text("phone");
       var infoCardFav = $("<a>").attr("id","favBtn"+[i]).addClass("btn-floating halfway-fab waves-effect waves-light pink lighten-2").val(restArray[i].name);
       var infoCardFavIcon = $("<i>").attr("class", "material-icons").text("favorite_border");
 
       //append elements to the page
-      info.append(infoCol);
+       info.append(infoCol);
       infoCol.append(infoCard);
       infoCard.append(infoCardRow);
       infoCardRow.append(infoCardColL, infoCardColR);
       infoCardColL.append(infoCardImage, infoCardContent);
       infoCardImage.append(featuredImage);
       infoCardContent.append(infoCardTitle);
-      infoCardColR.append(
-      //infoCardDetails,
-      infoCardMenu,
-      infoCardCall,
-      infoCardFav
-      );
-      // infoCardDetails.append(infoCardCuisines); //, infoCardHours, infoCardHood, infoCardAddress);
+     infoCardColR.append(infoCardDetails,infoCardFav);
+    infoCardDetails.append(infoCardCuisines, infoCardHours, infoCardHood, infoCardAddress);
       // infoCardMenu.append(infoCardMenuIcon);
       // infoCardCall.append(infoCardCallIcon);
-      infoCardFav.append(infoCardFavIcon);
+     infoCardFav.append(infoCardFavIcon);
     
       //add event listener for fav button on each restaurant card
       $("#favBtn"+[i]).on("click", function(event){
@@ -267,6 +255,8 @@ $(document).ready(function () {
     searchRestaurants($(this).text());
     console.log($(this).text())
   })
+
+
 
   
 });
