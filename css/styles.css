@@ -23,5 +23,12 @@ nav {
         max-height: fit-content;
     }
 
+#cityIcon {
+    display:inline-block;margin-right:10px;
+}
+
+#city {
+    display:inline-block;
+}
     
     

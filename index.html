@@ -58,8 +58,8 @@
           <div class="row">
             <div class="col s6">
               <div class="card-content">
-                <i class="material-icons prefix">location_city</i>
-                <h5 placeholder="City" class="validate" id="city"></h5>
+                <i class="material-icons" id="cityIcon">location_city</i>
+                <h5 id="city"></h5>
               </div>
             </div>
             <div class="col s6">
@@ -80,14 +80,6 @@
               >
                 search<i class="material-icons right">send</i>
               </button>
-              <button
-                class="btn waves-effect waves-light"
-                id="test"
-                type="submit"
-                name="action"
-              >
-                Test<i class="material-icons right">send</i>
-              </button>
             </div>
           </div>
           <div class="row">
@@ -105,46 +97,10 @@
       </div>
       <!--Card for restaurant information. Will be appended to page dynamically-->
       <div class="row" id="info"></div>
-      <div class="row" id="map"></div>
+      <div class="row" id="myMap" style="width: 80vw; height: 80vw;"></div>
     </div>
-    <div class="row" id="myMap" style="width: 80vw; height: 80vh;"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
-<!--
-  <div class="col s12 horizontal center-align" id="">
-    <div class="card">
-      <div class="row center-align">
-            <div class="col s4">
-              <div class="card-image">
-                <div id="featuredImage">
-                </div>
-              </div>
-              <div class="card-content">
-                <div id="restaurant name">
-                </div>
-              </div>
-            </div>
-            <div class="col s8">
-              <div id="restaurantInfo">
-              </div>
-              <div id="restaurantButtons">
-              <a id="favBtn" class="btn-floating halfway-fab waves-effect waves-light pink lighten-2"><i class="material-icons">favorite_border</i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    -->
-<!--
-    <div class="row ">
-      <div class="col s12 center-align">
-        <div class="card medium center-align">
-          <span class="card-title" style="padding-top:20px;">where it's at</span>
-          <div id="map">
-          </div>
-        </div>
-      </div>
-    </div>
-  -->
