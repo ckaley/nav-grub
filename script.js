@@ -120,6 +120,9 @@ $(document).ready(function () {
         restaurantObject.entityType = "city"
         restArray.push(restaurantObject);
       }
+      //console.log(queryURL);
+      //console.log(search)
+      //console.log($("#query").val())
       //console.log(response);
       //console.log(restArray);
       loadMapScenario();
@@ -200,7 +203,7 @@ $(document).ready(function () {
       // infoCardCall.append(infoCardCallIcon);
      infoCardFav.append(infoCardFavIcon);
     
-      //add event listener for fav button on each restaurant card
+      //add event listener for fav button on each restaurant card -- need to figure out a way to check if exact object exists in array already
       $("#favBtn"+[i]).on("click", function(event){
         //console.log(favoritesArray);
         //console.log($(this).val());
@@ -275,7 +278,7 @@ $(document).ready(function () {
       "https://developers.zomato.com/api/v2.1/search?apikey=" +
       apiKey +
       "&entity_type=" +
-      entity_type +
+      $(this).val().entityID +
       "&entity_id=" +
       $(this).val().entityType +
       "&q=" +
