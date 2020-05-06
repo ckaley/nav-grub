@@ -85,7 +85,7 @@
               <button class="btn waves-effect waves-light center"id="submit"type="submit"name="action"> <span class="hide-on-small-only">search</span> <i class="material-icons right">send</i></button>
             </div>
             <div class="col s4">
-              <button class="btn waves-effect waves-light center"id="mapButton"type="submit"name="map" style="display: none;"><span class="hide-on-small-only">go to map</span><i class="material-icons right">map</i></button>
+              <button class="btn waves-effect waves-light center scale-transition scale-out"id="mapButton"type="submit"name="map" style="visibility: hidden;"><span class="hide-on-small-only">go to map</span><i class="material-icons right">map</i></button>
             </div>
           </div>
     
@@ -95,7 +95,7 @@
       <div class="row" id="info"></div>
 
 
-      <div class="card" id="mapCard" style="display: none;">
+      <div class="card scale-transition scale-out" id="mapCard" style="visibility: hidden;">
         <div class="card-title center"><h5 style="padding-top:2rem; padding-bottom:1rem;">Nav Your Grub</h5></div>
         <div class="row" id="myMap" style="width: 65vw; height: 35vw;"></div>
       </div>
