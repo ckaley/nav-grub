@@ -172,7 +172,7 @@ $(document).ready(function () {
     for (var i = 0; i < restArray.length; i++) {
       var info = $("#info");
       var infoCol = $("<div>").attr("class", "col s12 center-align");
-      var infoCard = $("<div>").attr("class", "card horizontal");
+      var infoCard = $("<div>").attr("class", "card horizontal hoverable");
       var infoCardRow = $("<div>").attr("class", "row");
       var infoCardColL = $("<div>").attr("class", "col s4");
       var infoCardColR = $("<div>").attr("class", "col s8");
@@ -200,7 +200,7 @@ $(document).ready(function () {
       //append elements to the page
       info.append(infoCol);
       infoCol.append(infoCard);
-      infoCard.append(infoCardRow);
+      infoCard.append(infoCardRow, infoCardImage);
       infoCardRow.append(infoCardColL, infoCardColR);
       infoCardColL.append(infoCardImage, infoCardContent);
       infoCardImage.append(featuredImage);
