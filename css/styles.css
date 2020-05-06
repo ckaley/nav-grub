@@ -35,3 +35,6 @@ nav {
     margin-bottom: 3rem;
 }
 
+#myMap {
+    border: solid, 2.5px; navy;
+}
