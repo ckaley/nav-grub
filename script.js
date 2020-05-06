@@ -170,18 +170,23 @@ $(document).ready(function () {
       var infoCardImage = $("<div>").attr("class", "card-image");
       var featuredImage = $("<img>").attr("src", restArray[i].image);
       var infoCardContent = $("<div>").attr("class", "card-content");
-      var infoCardTitle = $("<span>").attr("class", "card-title").text(restArray[i].name);
+      var infoCardTitle = $("<h5>").attr("class", "card-title").text(restArray[i].name);
       var infoCardDetails = $("<div>");
       var infoCardCuisines = $("<p>").text("Cuisine Offerings: " + restArray[i].cuisine);
       var infoCardHours = $("<p>").text("Hours: " + restArray[i].hours);
       var infoCardAddress = $("<p>").text("Address: " + restArray[i].address);
       var infoCardHood = $("<p>").text(restArray[i].hood);
-      var infoCardMenu = $("<a>").attr({class:"waves-effect waves-light btn", id:"menuBtn", href:restArray[i].menuURL}).text("FIND MENU");
+      var infoCardMenu = $("<a>").attr({class:"waves-effect waves-light btn", id:"menuBtn", href:restArray[i].menuURL});
+      var infoCardMenuText =$("<span>").attr("class", "hide-on-small-only").text("FIND MENU")
       var infoCardMenuIcon = $("<i>").attr("class", "material-icons right").text("restaurant_menu");
-      var infoCardCall = $("<a>").attr({class:"waves-effect waves-light btn", id:"callBtn", href:"tel:"+restArray[i].phone}).text("CALL");
+      var infoCardCall = $("<a>").attr({class:"waves-effect waves-light btn", id:"callBtn", href:"tel:"+restArray[i].phone});
+      var infoCardCallText = $("<span>").attr("class", "hide-on-small-only").text("CALL")
       var infoCardCallIcon = $("<i>").attr("class", "material-icons right").text("phone");
       var infoCardFav = $("<a>").attr("id","favBtn"+[i]).addClass("btn-floating halfway-fab waves-effect waves-light pink lighten-2").val(restArray[i]);
       var infoCardFavIcon = $("<i>").attr("class", "material-icons").text("favorite_border");
+      var infoCardBtnRow = $("<div>").attr("class", "row");
+      var infoCardMenuBtnCol = $("<div>").attr("class", "col s6 center-align");
+      var infoCardCallBtnCol = $("<div>").attr("class", "col s6 center-align");
 
       //append elements to the page
       info.append(infoCol);
@@ -192,9 +197,12 @@ $(document).ready(function () {
       infoCardImage.append(featuredImage);
       infoCardContent.append(infoCardTitle);
       infoCardColR.append(infoCardDetails,infoCardFav);
-      infoCardDetails.append(infoCardCuisines, infoCardHours, infoCardHood, infoCardAddress, infoCardMenu, infoCardCall);
-      infoCardMenu.append(infoCardMenuIcon);
-      infoCardCall.append(infoCardCallIcon);
+      infoCardDetails.append(infoCardCuisines, infoCardHours, infoCardHood, infoCardAddress, infoCardBtnRow);
+      infoCardBtnRow.append(infoCardMenuBtnCol, infoCardCallBtnCol)
+      infoCardMenuBtnCol.append(infoCardMenu)
+      infoCardMenu.append(infoCardMenuIcon, infoCardMenuText);
+      infoCardCallBtnCol.append(infoCardCall)
+      infoCardCall.append(infoCardCallIcon, infoCardCallText);
       infoCardFav.append(infoCardFavIcon);
     
       //add event listener for fav button on each restaurant card -- need to figure out a way to check if exact object exists in array already
