@@ -78,28 +78,15 @@
             </div>
           </div>
           <div class="row">
-            <div class="col s6">
-              <button
-                class="btn waves-effect waves-light right"
-                id="submit"
-                type="submit"
-                name="action"
-              >
-                search<i class="material-icons right">send</i>
-              </button>
+            <div class="col s4">
+              <button class="btn waves-effect waves-light sidenav-trigger center" id="myFavorites" data-target="slide-out"><i class="material-icons right">favorite</i><span class="hide-on-small-only">my favorites</span></button>
             </div>
-            <div class="col s6">
-              <button
-              class="btn waves-effect waves-light sidenav-trigger left"
-              id="myFavorites"
-              data-target="slide-out"
-              >
-              <i class="material-icons right">favorite</i><span class="hide-on-small-only">my favorites</span>
-            </button>
-            <button
-                class="btn waves-effect waves-light right"id="mapButton"type="submit"name="map">Go To Map<i class="material-icons right">map</i>
-            </button>
-          </div>
+            <div class="col s4">
+              <button class="btn waves-effect waves-light center"id="submit"type="submit"name="action"> <span class="hide-on-small-only">search</span> <i class="material-icons right">send</i></button>
+            </div>
+            <div class="col s4">
+              <button class="btn waves-effect waves-light center"id="mapButton"type="submit"name="map" style="display: none;"><span class="hide-on-small-only">go to map</span><i class="material-icons right">map</i></button>
+            </div>
           </div>
     
         </div>
@@ -108,9 +95,9 @@
       <div class="row" id="info"></div>
 
 
-      <div class="card">
+      <div class="card" id="mapCard" style="display: none;">
         <div class="card-title center"><h5 style="padding-top:2rem; padding-bottom:1rem;">Nav Your Grub</h5></div>
-        <div class="row" id="myMap" style="width: 65vw; height: 65vw;"></div>
+        <div class="row" id="myMap" style="width: 65vw; height: 35vw;"></div>
       </div>
 
 

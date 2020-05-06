@@ -20,13 +20,20 @@ $(document).ready(function () {
   $(".sidenav").sidenav();
 
 
-
+  //event listener for Go To Map button
   $("#mapButton").click(function () {
       var elmnt = document.getElementById("myMap");
   elmnt.scrollIntoView();
   });
 
 
+  // //function to hide map elements until search is conducted
+  // function showMapElements(){
+  //   var mapCard = $("#mapCard");
+  //   var mapBtn = $("#mapButton");
+    
+
+  // }
 
 
 
@@ -153,6 +160,8 @@ $(document).ready(function () {
   //Used to invoke search of restaurants
   $("#submit").on("click", function () {
     searchRestaurants();
+    $("#mapCard").show();
+    $("#mapButton").show();
   });
 
 
