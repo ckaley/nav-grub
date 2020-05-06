@@ -117,7 +117,9 @@ $(document).ready(function () {
         restaurantObject.image = response.restaurants[i].restaurant.featured_image;
         restaurantObject.id = response.restaurants[i].restaurant.id;
         restaurantObject.entityID = response.restaurants[i].restaurant.location.city_id;
-        restaurantObject.entityType = "city"
+        restaurantObject.entityType = "city",
+        restaurantObject.menuURL = response.restaurants[i].restaurant.menu_url,
+        restaurantObject.phone = response.restaurants[i].restaurant.phone_numbers
         restArray.push(restaurantObject);
       }
       //console.log(queryURL);
@@ -168,40 +170,32 @@ $(document).ready(function () {
       var infoCardImage = $("<div>").attr("class", "card-image");
       var featuredImage = $("<img>").attr("src", restArray[i].image);
       var infoCardContent = $("<div>").attr("class", "card-content");
-      var infoCardTitle = $("<span>")
-        .attr("class", "card-title")
-        .text(restArray[i].name);
+      var infoCardTitle = $("<span>").attr("class", "card-title").text(restArray[i].name);
       var infoCardDetails = $("<div>");
       var infoCardCuisines = $("<p>").text("Cuisine Offerings: " + restArray[i].cuisine);
       var infoCardHours = $("<p>").text("Hours: " + restArray[i].hours);
       var infoCardAddress = $("<p>").text("Address: " + restArray[i].address);
       var infoCardHood = $("<p>").text(restArray[i].hood);
-      var infoCardMenu = $("<a>").attr("class", "waves-effect waves-light btn", "id", "menuBtn").text("VIEW FULL MENU");
-      // //var infoCardMenuIcon = $("<i>")
-      //   .attr("class", "material-icons right")
-      //   .text("restaurant_menu");
-      // var infoCardCall = $("<a>")
-      //   .attr("class", "waves-effect waves-light btn", "id", "callBtn")
-      //   .text("CALL");
-      // var infoCardCallIcon = $("<i>")
-      //   .attr("class", "material-icons right")
-      //   .text("phone");
+      var infoCardMenu = $("<a>").attr({class:"waves-effect waves-light btn", id:"menuBtn", href:restArray[i].menuURL}).text("FIND MENU");
+      var infoCardMenuIcon = $("<i>").attr("class", "material-icons right").text("restaurant_menu");
+      var infoCardCall = $("<a>").attr({class:"waves-effect waves-light btn", id:"callBtn", href:"tel:"+restArray[i].phone}).text("CALL");
+      var infoCardCallIcon = $("<i>").attr("class", "material-icons right").text("phone");
       var infoCardFav = $("<a>").attr("id","favBtn"+[i]).addClass("btn-floating halfway-fab waves-effect waves-light pink lighten-2").val(restArray[i]);
       var infoCardFavIcon = $("<i>").attr("class", "material-icons").text("favorite_border");
 
       //append elements to the page
-       info.append(infoCol);
+      info.append(infoCol);
       infoCol.append(infoCard);
       infoCard.append(infoCardRow);
       infoCardRow.append(infoCardColL, infoCardColR);
       infoCardColL.append(infoCardImage, infoCardContent);
       infoCardImage.append(featuredImage);
       infoCardContent.append(infoCardTitle);
-     infoCardColR.append(infoCardDetails,infoCardFav);
-    infoCardDetails.append(infoCardCuisines, infoCardHours, infoCardHood, infoCardAddress);
-      // infoCardMenu.append(infoCardMenuIcon);
-      // infoCardCall.append(infoCardCallIcon);
-     infoCardFav.append(infoCardFavIcon);
+      infoCardColR.append(infoCardDetails,infoCardFav);
+      infoCardDetails.append(infoCardCuisines, infoCardHours, infoCardHood, infoCardAddress, infoCardMenu, infoCardCall);
+      infoCardMenu.append(infoCardMenuIcon);
+      infoCardCall.append(infoCardCallIcon);
+      infoCardFav.append(infoCardFavIcon);
     
       //add event listener for fav button on each restaurant card -- need to figure out a way to check if exact object exists in array already
       $("#favBtn"+[i]).on("click", function(event){
