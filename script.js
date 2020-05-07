@@ -1,7 +1,7 @@
 var map;
+var mapCenter = [];
 
 function loadMapScenario() {
-  //console.log("loadMapScenario");
   map = new Microsoft.Maps.Map(document.getElementById("myMap"), {});
 }
 
@@ -10,11 +10,10 @@ function GetMap() {
   map = new Microsoft.Maps.Map("#myMap", {
     credentials:
       "ArULTIYfxQSEZ0tXfKIG0yg3EawTuXGpK82x19OPe74Gbi3l02v1M1WgGZnqmyHL",
-    center: new Microsoft.Maps.Location(39.73, -104.99),
+    center: new Microsoft.Maps.Location(mapCenter[0], mapCenter[1]),
     zoom: 13.5,
   });
-  // var center = map.getCenter();
-  // console.log(center);
+  //39.73, -104.99
 }
 $(document).ready(function () {
   //Slide Out NavBar for Favorites List - uses JS from materialize library
@@ -25,13 +24,6 @@ $(document).ready(function () {
     var elmnt = document.getElementById("myMap");
     elmnt.scrollIntoView();
   });
-
-  // //function to hide map elements until search is conducted
-  // function showMapElements(){
-  //   var mapCard = $("#mapCard");
-  //   var mapBtn = $("#mapButton");
-
-  // }
 
   //Define Global Variables
   var entity_id = ""; //Used in the Zomato Search, represents the city
@@ -74,8 +66,6 @@ $(document).ready(function () {
     }).then(function (response) {
       entity_id = response.location_suggestions[0].id;
       cityName = response.location_suggestions[0].name;
-      //console.log(entity_id);
-      //console.log(cityName);
       //Using JQuery, set the display of the field on the browser with the cityname
       $("#city").text(cityName);
     });
@@ -84,6 +74,7 @@ $(document).ready(function () {
   function searchRestaurants(search) {
     //empty the page and clear the array (clear prior results)
     $("#info").empty();
+    $("#query").val("");
     restArray = [];
 
     //Using JQuery, set the text search paramter from the ID Field on the screen
@@ -106,6 +97,7 @@ $(document).ready(function () {
       url: queryURL,
       method: "GET",
     }).then(function (response) {
+      mapCenter = [];
       for (var i = 0; i < response.restaurants.length; i++) {
         var restaurantObject = {};
         restaurantObject.name = response.restaurants[i].restaurant.name;
@@ -131,11 +123,8 @@ $(document).ready(function () {
             response.restaurants[i].restaurant.phone_numbers);
         restArray.push(restaurantObject);
       }
-      //console.log(queryURL);
-      //console.log(search)
-      //console.log($("#query").val())
-      //console.log(response);
-      //console.log(restArray);
+      mapCenter.push(restaurantObject.latitude, restaurantObject.longitude);
+
       loadMapScenario();
       GetMap();
       pinToMap(restArray);
@@ -146,8 +135,9 @@ $(document).ready(function () {
   function searchFavorite(resID) {
     //empty the page and clear the array (clear prior results)
     $("#info").empty();
+    $("#query").val("");
     restArray = [];
-
+    mapCenter = [];
     //Construct Query URL with criteria to obtain the list of resatuants in the
     //city the user is located
     var queryURL =
@@ -172,6 +162,7 @@ $(document).ready(function () {
       restaurantObject.id = response.id;
       restaurantObject.entityID = response.location.city_id;
       restArray.push(restaurantObject);
+      mapCenter.push(restaurantObject.latitude, restaurantObject.longitude);
       //console.log(restArray);
       loadMapScenario();
       GetMap();
@@ -191,14 +182,12 @@ $(document).ready(function () {
       });
       map.entities.push(pin);
     }
-    //console.log("Restaurant Plots:  ", restArray);
   }
   //Get User location once the document is ready
   getUserLocation();
 
   //Used to invoke search of restaurants
   $("#submit").on("click", function () {
-    $("#query").val("");
     searchRestaurants($("#query").val());
     $("#mapCard")
       .css("visibility", "visible")
@@ -212,11 +201,13 @@ $(document).ready(function () {
 
   // function that creates info cards for each restaurant returned from the api
   function populateCard() {
-    // //element variables
+    //element variables
     for (var i = 0; i < restArray.length; i++) {
       var info = $("#info");
       var infoCol = $("<div>").attr("class", "col s12 center-align");
-      var infoCard = $("<div>").attr({ class: "card horizontal hoverable" });
+      var infoCard = $("<div>").attr({
+        class: "card horizontal hoverable",
+      });
       var infoCardRow = $("<div>").attr("class", "row");
       var infoCardColL = $("<div>").attr("class", "col s4");
       var infoCardColR = $("<div>").attr("class", "col s8");
@@ -293,9 +284,6 @@ $(document).ready(function () {
 
       //add event listener for fav button on each restaurant card -- need to figure out a way to check if exact object exists in array already
       $("#favBtn" + [i]).on("click", function (event) {
-        //console.log(favoritesArray);
-        //console.log($(this).val());
-        //console.log($(this).val().name);
         favoritesArray.push($(this).val());
         localStorage.setItem("favsStorage", JSON.stringify(favoritesArray));
         getFavHist();
@@ -345,16 +333,12 @@ $(document).ready(function () {
         .val(favoritesArray[i]);
       favorites.append(favoritesLI);
       favoritesLI.append(favoritesBtn);
-      console.log(favoritesBtn.val());
     }
   }
   getFavHist();
 
   //event listener for favorites slide out ---- need to figure out how to pass this.text as an argument in the search restaurants function...or we create a whole new version of the api fetch and it only returns 1 restaurant
   $("#favorites").on("click", "li", function () {
-    console.log($(this).val()); //why is the value of this button not working??????
-    console.log($(this).text());
-    console.log($(this).attr("id"));
     searchFavorite($(this).attr("id"));
   });
 });
