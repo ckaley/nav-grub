@@ -123,7 +123,7 @@ $(document).ready(function () {
             response.restaurants[i].restaurant.phone_numbers);
         restArray.push(restaurantObject);
       }
-      mapCenter.push(restaurantObject.latitude, restaurantObject.longitude);
+      mapCenter.push(restArray[0].latitude, restArray[0].longitude);
 
       loadMapScenario();
       GetMap();
@@ -162,7 +162,7 @@ $(document).ready(function () {
       restaurantObject.id = response.id;
       restaurantObject.entityID = response.location.city_id;
       restArray.push(restaurantObject);
-      mapCenter.push(restaurantObject.latitude, restaurantObject.longitude);
+      mapCenter.push(restArray[0].latitude, restArray[0].longitude);
       //console.log(restArray);
       loadMapScenario();
       GetMap();
@@ -197,6 +197,20 @@ $(document).ready(function () {
       .css("visibility", "visible")
       .removeClass("scale-out")
       .addClass("scale-in");
+  });
+  $(document).on("keypress", "input", function(e){
+    if (e.which == 13){
+
+      searchRestaurants($("#query").val());
+    $("#mapCard")
+      .css("visibility", "visible")
+      .removeClass("scale-out")
+      .addClass("scale-in");
+    $("#mapButton")
+      .css("visibility", "visible")
+      .removeClass("scale-out")
+      .addClass("scale-in");
+    }
   });
 
   // function that creates info cards for each restaurant returned from the api
