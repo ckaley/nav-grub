@@ -337,8 +337,16 @@ $(document).ready(function () {
   }
   getFavHist();
 
-  //event listener for favorites slide out ---- need to figure out how to pass this.text as an argument in the search restaurants function...or we create a whole new version of the api fetch and it only returns 1 restaurant
+  //event listener for favorites slide out
   $("#favorites").on("click", "li", function () {
+    $("#mapCard")
+      .css("visibility", "visible")
+      .removeClass("scale-out")
+      .addClass("scale-in");
+    $("#mapButton")
+      .css("visibility", "visible")
+      .removeClass("scale-out")
+      .addClass("scale-in");
     searchFavorite($(this).attr("id"));
   });
 });
