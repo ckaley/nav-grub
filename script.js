@@ -123,7 +123,7 @@ $(document).ready(function () {
             response.restaurants[i].restaurant.phone_numbers);
         restArray.push(restaurantObject);
       }
-      mapCenter.push(restaurantObject.latitude, restaurantObject.longitude);
+      mapCenter.push(restArray[0].latitude, restArray[0].longitude);
 
       loadMapScenario();
       GetMap();
@@ -162,7 +162,7 @@ $(document).ready(function () {
       restaurantObject.id = response.id;
       restaurantObject.entityID = response.location.city_id;
       restArray.push(restaurantObject);
-      mapCenter.push(restaurantObject.latitude, restaurantObject.longitude);
+      mapCenter.push(restArray[0].latitude, restArray[0].longitude);
       //console.log(restArray);
       loadMapScenario();
       GetMap();
@@ -197,6 +197,20 @@ $(document).ready(function () {
       .css("visibility", "visible")
       .removeClass("scale-out")
       .addClass("scale-in");
+  });
+  $(document).on("keypress", "input", function(e){
+    if (e.which == 13){
+
+      searchRestaurants($("#query").val());
+    $("#mapCard")
+      .css("visibility", "visible")
+      .removeClass("scale-out")
+      .addClass("scale-in");
+    $("#mapButton")
+      .css("visibility", "visible")
+      .removeClass("scale-out")
+      .addClass("scale-in");
+    }
   });
 
   // function that creates info cards for each restaurant returned from the api
@@ -282,30 +296,31 @@ $(document).ready(function () {
       infoCardCall.append(infoCardCallIcon, infoCardCallText);
       infoCardFav.append(infoCardFavIcon);
 
-      //add event listener for fav button on each restaurant card -- need to figure out a way to check if exact object exists in array already
-      $("#favBtn" + [i]).on("click", function (event) {
-        favoritesArray.push($(this).val());
-        localStorage.setItem("favsStorage", JSON.stringify(favoritesArray));
-        getFavHist();
-      });
+      //add event listener for fav button on each restaurant card
+      $("#favBtn" + [i]).on("click", function(event) {
+        //add the restaurant to the favorites menu no matter what if the favorites menu is empty
+        if (favoritesArray.length === 0){
+          favoritesArray.push($(this).val())
+          localStorage.setItem("favsStorage", JSON.stringify(favoritesArray));
+          getFavHist();
+          //but if there are already restaurants on the favorites slide out menu, don't add the same restaurant twice
+        } else if (favoritesArray.length > 0) {
+          var newArr = [];
+          for (var i = 0; i < favoritesArray.length; i++){
+            newArr.push(favoritesArray[i].name)
+          }
+          if (newArr.includes($(this).val().name)){
+            console.log("You have already saved this restaurant")
+          } else{
+              favoritesArray.push($(this).val())
+              localStorage.setItem("favsStorage", JSON.stringify(favoritesArray));
+              getFavHist();
+          }
+        } console.log(newArr)
+        
+      })
     }
-  }
-
-  //trying here how to figure out to check if specific property of an object exists in an array
-  //add favorited restaturant to array (if it isn't there already) and then add to local storage
-  // for (var i = 0; i < favoritesArray.length; i++){
-  //   if (favoritesArray.indexOf($(this).val().name) === -1) {
-  //       console.log("!!!)")
-  //       //add new favorite restaurant to array
-  //console.log($(this).val().name)
-  //save array to local storage
-
-  //re-append all array items to favorites menu
-  //   } else {
-  //     console.log("???")
-  // }
-  // }
-  // })
+  };
 
   //function that grabs all favorited restaurants from local storage and adds them as buttons to the favorites slide out
   function getFavHist() {
@@ -337,8 +352,16 @@ $(document).ready(function () {
   }
   getFavHist();
 
-  //event listener for favorites slide out ---- need to figure out how to pass this.text as an argument in the search restaurants function...or we create a whole new version of the api fetch and it only returns 1 restaurant
+  //event listener for favorites slide out
   $("#favorites").on("click", "li", function () {
+    $("#mapCard")
+      .css("visibility", "visible")
+      .removeClass("scale-out")
+      .addClass("scale-in");
+    $("#mapButton")
+      .css("visibility", "visible")
+      .removeClass("scale-out")
+      .addClass("scale-in");
     searchFavorite($(this).attr("id"));
   });
 });
