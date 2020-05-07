@@ -1,4 +1,5 @@
 /*Font styles for main headings*/
+<<<<<<< HEAD
 h4,
 h5,
 nav,
@@ -7,6 +8,12 @@ span,
   font-family: "Pacifico", cursive;
   color: #cf5d4c;
 }
+=======
+h4, h5, nav, .card-title {
+        font-family: 'Pacifico', cursive;
+        color: navy
+    }
+>>>>>>> feature/favorites2
 h6 {
   color: #cf5d4c;
   font-family: "Noto Sans SC", sans-serif;
@@ -60,6 +67,11 @@ body {
   display: inline-block;
 }
 
+<<<<<<< HEAD
 #query {
   font-family: "Noto Sans SC", sans-serif;
+=======
+.card {
+    margin-bottom: 3rem;
+>>>>>>> feature/favorites2
 }

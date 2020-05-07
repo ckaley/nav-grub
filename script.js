@@ -1,12 +1,12 @@
 var map;
 
 function loadMapScenario() {
-  console.log("loadMapScenario");
+  //console.log("loadMapScenario");
   map = new Microsoft.Maps.Map(document.getElementById("myMap"), {});
 }
 
 function GetMap() {
-  console.log("GetMap");
+  //console.log("GetMap");
   map = new Microsoft.Maps.Map("#myMap", {
     credentials: "ArULTIYfxQSEZ0tXfKIG0yg3EawTuXGpK82x19OPe74Gbi3l02v1M1WgGZnqmyHL",
     center: new Microsoft.Maps.Location(39.73, -104.99),
@@ -20,13 +20,20 @@ $(document).ready(function () {
   $(".sidenav").sidenav();
 
 
-
+  //event listener for Go To Map button
   $("#mapButton").click(function () {
       var elmnt = document.getElementById("myMap");
   elmnt.scrollIntoView();
   });
 
 
+  // //function to hide map elements until search is conducted
+  // function showMapElements(){
+  //   var mapCard = $("#mapCard");
+  //   var mapBtn = $("#mapButton");
+    
+
+  // }
 
 
 
@@ -49,7 +56,7 @@ $(document).ready(function () {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(getCityName);
     } else {
-      console.log("Geolocation is not supported by this browser.");
+      //console.log("Geolocation is not supported by this browser.");
     }
   }
   // This function is called once the browser returns the latitude and
@@ -73,8 +80,8 @@ $(document).ready(function () {
     }).then(function (response) {
       entity_id = response.location_suggestions[0].id;
       cityName = response.location_suggestions[0].name;
-      console.log(entity_id);
-      console.log(cityName);
+      //console.log(entity_id);
+      //console.log(cityName);
       //Using JQuery, set the display of the field on the browser with the cityname
       $("#city").text(cityName);
     });
@@ -84,7 +91,6 @@ $(document).ready(function () {
     //empty the page and clear the array (clear prior results)
     $("#info").empty();
     restArray = []
-    console.log("empty")
 
     //Using JQuery, set the text search paramter from the ID Field on the screen
     var search = $("#query").val();
@@ -116,10 +122,18 @@ $(document).ready(function () {
         restaurantObject.latitude = response.restaurants[i].restaurant.location.latitude;
         restaurantObject.longitude = response.restaurants[i].restaurant.location.longitude;
         restaurantObject.image = response.restaurants[i].restaurant.featured_image;
+        restaurantObject.id = response.restaurants[i].restaurant.id;
+        restaurantObject.entityID = response.restaurants[i].restaurant.location.city_id;
+        restaurantObject.entityType = "city",
+        restaurantObject.menuURL = response.restaurants[i].restaurant.menu_url,
+        restaurantObject.phone = response.restaurants[i].restaurant.phone_numbers
         restArray.push(restaurantObject);
       }
-      console.log(response);
-      console.log(restArray);
+      //console.log(queryURL);
+      //console.log(search)
+      //console.log($("#query").val())
+      //console.log(response);
+      //console.log(restArray);
       loadMapScenario();
       GetMap();
       pinToMap(restArray);
@@ -139,13 +153,15 @@ $(document).ready(function () {
       });
       map.entities.push(pin);
     }
-    console.log("Restaurant Plots:  ", restArray);
+    //console.log("Restaurant Plots:  ", restArray);
   }
   //Get User location once the document is ready
   getUserLocation();
   //Used to invoke search of restaurants
   $("#submit").on("click", function () {
     searchRestaurants();
+    $("#mapCard").css("visibility", "visible").removeClass('scale-out').addClass('scale-in');
+    $("#mapButton").css("visibility", "visible").removeClass('scale-out').addClass('scale-in');
   });
 
 
@@ -156,66 +172,76 @@ $(document).ready(function () {
     for (var i = 0; i < restArray.length; i++) {
       var info = $("#info");
       var infoCol = $("<div>").attr("class", "col s12 center-align");
-      var infoCard = $("<div>").attr("class", "card horizontal");
+      var infoCard = $("<div>").attr({class:"card horizontal hoverable"});
       var infoCardRow = $("<div>").attr("class", "row");
       var infoCardColL = $("<div>").attr("class", "col s4");
       var infoCardColR = $("<div>").attr("class", "col s8");
       var infoCardImage = $("<div>").attr("class", "card-image");
       var featuredImage = $("<img>").attr("src", restArray[i].image);
       var infoCardContent = $("<div>").attr("class", "card-content");
-      var infoCardTitle = $("<span>")
-        .attr("class", "card-title")
-        .text(restArray[i].name);
+      var infoCardTitle = $("<h5>").attr("class", "card-title").text(restArray[i].name);
       var infoCardDetails = $("<div>");
       var infoCardCuisines = $("<p>").text("Cuisine Offerings: " + restArray[i].cuisine);
       var infoCardHours = $("<p>").text("Hours: " + restArray[i].hours);
       var infoCardAddress = $("<p>").text("Address: " + restArray[i].address);
       var infoCardHood = $("<p>").text(restArray[i].hood);
-      var infoCardMenu = $("<a>").attr("class", "waves-effect waves-light btn", "id", "menuBtn").text("VIEW FULL MENU");
-      // //var infoCardMenuIcon = $("<i>")
-      //   .attr("class", "material-icons right")
-      //   .text("restaurant_menu");
-      // var infoCardCall = $("<a>")
-      //   .attr("class", "waves-effect waves-light btn", "id", "callBtn")
-      //   .text("CALL");
-      // var infoCardCallIcon = $("<i>")
-      //   .attr("class", "material-icons right")
-      //   .text("phone");
-      var infoCardFav = $("<a>").attr("id","favBtn"+[i]).addClass("btn-floating halfway-fab waves-effect waves-light pink lighten-2").val(restArray[i].name);
+      var infoCardMenu = $("<a>").attr({class:"waves-effect waves-light btn", id:"menuBtn", href:restArray[i].menuURL});
+      var infoCardMenuText =$("<span>").attr("class", "hide-on-small-only").text("FIND MENU")
+      var infoCardMenuIcon = $("<i>").attr("class", "material-icons right").text("restaurant_menu");
+      var infoCardCall = $("<a>").attr({class:"waves-effect waves-light btn", id:"callBtn", href:"tel:"+restArray[i].phone});
+      var infoCardCallText = $("<span>").attr("class", "hide-on-small-only").text("CALL")
+      var infoCardCallIcon = $("<i>").attr("class", "material-icons right").text("phone");
+      var infoCardFav = $("<a>").attr("id","favBtn"+[i]).addClass("btn-floating halfway-fab waves-effect waves-light pink lighten-2").val(restArray[i]);
       var infoCardFavIcon = $("<i>").attr("class", "material-icons").text("favorite_border");
+      var infoCardBtnRow = $("<div>").attr("class", "row");
+      var infoCardMenuBtnCol = $("<div>").attr("class", "col s6 center-align");
+      var infoCardCallBtnCol = $("<div>").attr("class", "col s6 center-align");
 
       //append elements to the page
-       info.append(infoCol);
+      info.append(infoCol);
       infoCol.append(infoCard);
-      infoCard.append(infoCardRow);
+      infoCard.append(infoCardRow, infoCardImage);
       infoCardRow.append(infoCardColL, infoCardColR);
       infoCardColL.append(infoCardImage, infoCardContent);
       infoCardImage.append(featuredImage);
       infoCardContent.append(infoCardTitle);
-     infoCardColR.append(infoCardDetails,infoCardFav);
-    infoCardDetails.append(infoCardCuisines, infoCardHours, infoCardHood, infoCardAddress);
-      // infoCardMenu.append(infoCardMenuIcon);
-      // infoCardCall.append(infoCardCallIcon);
-     infoCardFav.append(infoCardFavIcon);
+      infoCardColR.append(infoCardDetails,infoCardFav);
+      infoCardDetails.append(infoCardCuisines, infoCardHours, infoCardHood, infoCardAddress, infoCardBtnRow);
+      infoCardBtnRow.append(infoCardMenuBtnCol, infoCardCallBtnCol)
+      infoCardMenuBtnCol.append(infoCardMenu)
+      infoCardMenu.append(infoCardMenuIcon, infoCardMenuText);
+      infoCardCallBtnCol.append(infoCardCall)
+      infoCardCall.append(infoCardCallIcon, infoCardCallText);
+      infoCardFav.append(infoCardFavIcon);
     
-      //add event listener for fav button on each restaurant card
+      //add event listener for fav button on each restaurant card -- need to figure out a way to check if exact object exists in array already
       $("#favBtn"+[i]).on("click", function(event){
-        event.preventDefault();
-        //add favorited restaturant to array and then add to local storage
-        if (favoritesArray.indexOf($(this).val()) === -1) {
-          //add new favorite restaurant to array
-          favoritesArray.push($(this).val())
-          //save array to local storage
-          localStorage.setItem("favsStorage", JSON.stringify(favoritesArray));
-          //re-append all array items to favorites menu
-          getFavHist();
-        }
-        });
-      }
-    
+        //console.log(favoritesArray);
+        //console.log($(this).val());
+        //console.log($(this).val().name);
+        favoritesArray.push($(this).val())
+        localStorage.setItem("favsStorage", JSON.stringify(favoritesArray));
+        getFavHist();
+      })
+    }
   }
 
 
+      //trying here how to figure out to check if specific property of an object exists in an array
+        //add favorited restaturant to array (if it isn't there already) and then add to local storage
+        // for (var i = 0; i < favoritesArray.length; i++){
+        //   if (favoritesArray.indexOf($(this).val().name) === -1) {
+        //       console.log("!!!)")
+        //       //add new favorite restaurant to array
+            //console.log($(this).val().name)
+              //save array to local storage
+              
+              //re-append all array items to favorites menu
+            //   } else {
+            //     console.log("???")
+            // }
+        // }
+        // })
 
 
 
@@ -224,7 +250,6 @@ $(document).ready(function () {
 
   //function that grabs all favorited restaurants from local storage and adds them as buttons to the favorites slide out
   function getFavHist(){
-  console.log(favoritesArray)
     
     //grab items from local history
     var fromStor = localStorage.getItem("favsStorage");
@@ -243,17 +268,61 @@ $(document).ready(function () {
     favorites.empty();
     for (var i = 0; i < favoritesArray.length; i++){
         var favoritesLI = $("<li>");
-        var favoritesBtn = $("<a>").attr("class", "waves-effect waves-light btn-small").text(favoritesArray[i])
+        var favoritesBtn = $("<a>").attr("class", "waves-effect waves-light btn-small").text(favoritesArray[i].name).val(favoritesArray[i]);
         favorites.append(favoritesLI);
-        favoritesLI.append(favoritesBtn);          
+        favoritesLI.append(favoritesBtn);
+        console.log(favoritesBtn.val())      
     }
   }   
   getFavHist();
 
   //event listener for favorites slide out ---- need to figure out how to pass this.text as an argument in the search restaurants function...or we create a whole new version of the api fetch and it only returns 1 restaurant
     $("#favorites").on("click", "li", function(){
-    searchRestaurants($(this).text());
+    console.log($(this).val());  //why is the value of this button not working??????
     console.log($(this).text())
+
+    //AJAX call for favorite button
+    var search = ($(this).val().name);
+    //Construct Query URL with criteria to obtain the list of resatuants in the
+    //city the user is located
+    var queryURL =
+      "https://developers.zomato.com/api/v2.1/search?apikey=" +
+      apiKey +
+      "&entity_type=" +
+      $(this).val().entityID +
+      "&entity_id=" +
+      $(this).val().entityType +
+      "&q=" +
+      search +
+      "&count=" +
+      "1";
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+    }).then(function (response) {
+      for (var i = 0; i < response.restaurants.length; i++) {
+        var restaurantObject = {};
+        restaurantObject.name = response.restaurants[i].restaurant.name;
+        restaurantObject.address = response.restaurants[i].restaurant.location.address;
+        restaurantObject.hours = response.restaurants[i].restaurant.timings;
+        restaurantObject.hood = response.restaurants[i].restaurant.location.locality_verbose;
+        restaurantObject.cuisine = response.restaurants[i].restaurant.cuisines;
+        restaurantObject.latitude = response.restaurants[i].restaurant.location.latitude;
+        restaurantObject.longitude = response.restaurants[i].restaurant.location.longitude;
+        restaurantObject.image = response.restaurants[i].restaurant.featured_image;
+        restaurantObject.id = response.restaurants[i].restaurant.id;
+        restaurantObject.entityID = response.restaurants[i].restaurant.location.city_id;
+        restaurantObject.entityType = "city"
+        restArray.push(restaurantObject);
+      }
+      console.log(response);
+      //console.log(restArray);
+      loadMapScenario();
+      GetMap();
+      pinToMap(restArray);
+      populateCard();
+    });
+
   })
 
 
