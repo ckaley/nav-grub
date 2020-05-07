@@ -22,8 +22,8 @@ WHEN I click on the search button
 THEN I am presented with 10 restaurants near me and a map showing the location of each restaurant
 WHEN I find a restaurant I am interested in
 THEN I can favorite that restaurant and save it to local storage
-WHEN I click the my favorites button
+WHEN I click the My Favorites button
 THEN a sidebar appears showing a list of restaurants I have favorited
-WHEN I click on the restaurant's name in the Favorites sideber
+WHEN I click on the restaurant's name in the Favorites sidebar
 THEN I am taken to the restaurant's listing
 ```
