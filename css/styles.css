@@ -1,1 +1,76 @@
+/*Font styles for main headings*/
+h4,
+h5,
+nav,
+span,
+.card-title {
+  font-family: "Pacifico", cursive;
+  color: #cf5d4c;
+}
+h6 {
+  color: #cf5d4c;
+  font-family: "Noto Sans SC", sans-serif;
+}
+span {
+  font-family: "Noto Sans SC", sans-serif;
+  color: #f4eada;
+}
+i {
+  color: #f4eada;
+}
+h6 {
+  color: #cf5d4c;
+  font-family: "Noto Sans SC", sans-serif;
+}
 
+/*Coloring for header nav bar*/
+nav {
+  background-color: #95c9bc;
+  height: 150px;
+  border-width: 5px;
+  border-style: none none double none;
+  border-color: #cf5d4c;
+  margin: 0px 0px 30px 0px;
+}
+
+body {
+  height: 100%;
+  background: url("images/navgrub_bg.png");
+  background-color: #f4eada;
+  background-attachment: fixed;
+}
+
+.card {
+  background-color: #f4eada;
+  border-width: 1px;
+  border-style: solid solid solid solid;
+  border-color: #7eafa5;
+}
+
+.card-title {
+  padding-top: 10px;
+}
+
+/*Coloring for buttons*/
+.btn,
+.btn-small {
+  background-color: #cf5d4c;
+}
+
+/*Sizes the image from zomato appropriately*/
+#foodImg {
+  max-height: fit-content;
+}
+
+#cityIcon {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#city {
+  display: inline-block;
+}
+
+#query {
+  font-family: "Noto Sans SC", sans-serif;
+}

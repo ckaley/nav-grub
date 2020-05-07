@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NavGrub</title>
+    <!--Materialize CSS-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <!--Google Fonts Icons-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Google Fonts-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <!--Supplementary CSS-->
+    <link href="css/styles.css" rel="stylesheet" />
 
+    <!--Bing Maps API-->
+    <script
+      type="text/javascript"
+      src="https://www.bing.com/api/maps/mapcontrol?key=ArULTIYfxQSEZ0tXfKIG0yg3EawTuXGpK82x19OPe74Gbi3l02v1M1WgGZnqmyHL"
+    ></script>
+  </head>
+  <body>
+    <!--Header with app name-->
+    <nav>
+      <div class="nav-wrapper container">
+        <img src="css/images/logo.png" alt="NavGrub Logo" style="height: 100%;
+        width: auto;"" class="responsive-img brand-logo center" />
+      </div>
+    </nav>
+    <!--Slide out nav bar for favorite restaurants-->
+    <ul id="slide-out" class="sidenav">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img src="sidenavBackground.jpg" class="responsive-img" />
+          </div>
+          <br />
+          <h5>favorites</h5>
+          <br /><br />
+        </div>
+      </li>
+      <div>
+        <ul id="favorites"></ul>
+      </div>
+    </ul>
+    <!--Main Body Content-->
+    <div class="container">
+      <!--Card For Query Box-->
+      <div class="row">
+        <div
+          class="col s12 card small center-align"
+          style="height: fit-content; padding-top: 20px;"
+        >
+          <h4 class="card-title">find a place to eat</h4>
+          <div class="row">
+            <div class="col s6">
+              <div class="card-content">
+                <i class="material-icons" id="cityIcon" style="color: #828282;"
+                  >location_city</i
+                >
+                <h6 id="city"></h6>
+              </div>
+            </div>
+            <div class="col s6">
+              <div class="input-field">
+                <i class="material-icons prefix" style="color: #828282;"
+                  >search</i
+                >
+                <input placeholder="Moe's Tavern, Ethiopian, etc" id="query" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s4">
+              <button
+                class="btn waves-effect waves-light sidenav-trigger center"
+                id="myFavorites"
+                data-target="slide-out"
+              >
+                <i class="material-icons right">favorite</i
+                ><span class="hide-on-small-only">my favorites</span>
+              </button>
+            </div>
+            <div class="col s4">
+              <button
+                class="btn waves-effect waves-light center"
+                id="submit"
+                type="submit"
+                name="action"
+              >
+                <span class="hide-on-small-only">search</span>
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+            <div class="col s4">
+              <button
+                class="btn waves-effect waves-light center scale-transition scale-out"
+                id="mapButton"
+                type="submit"
+                name="map"
+                style="visibility: hidden;"
+              >
+                <span class="hide-on-small-only">go to map</span
+                ><i class="material-icons right">map</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Card for restaurant information. Will be appended to page dynamically-->
+      <div class="row" id="info"></div>
+
+      <div
+        class="card scale-transition scale-out"
+        id="mapCard"
+        style="visibility: hidden;"
+      >
+        <div class="card-title center">
+          <h5 style="padding-top: 2rem; padding-bottom: 1rem;">
+            Nav Your Grub
+          </h5>
+        </div>
+        <div class="row" id="myMap" style="width: 65vw; height: 35vw;"></div>
+      </div>
+    </div>
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!--Materialize JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--JS-->
+    <script src="script.js"></script>
+  </body>
+</html>
