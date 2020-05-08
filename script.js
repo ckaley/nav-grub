@@ -242,6 +242,7 @@ $(document).ready(function () {
         class: "waves-effect waves-light btn",
         id: "menuBtn",
         href: restArray[i].menuURL,
+        target: "_blank",
       });
       var infoCardMenuText = $("<span>")
         .attr("class", "hide-on-small-only")
