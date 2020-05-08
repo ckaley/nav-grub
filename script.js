@@ -177,6 +177,7 @@ $(document).ready(function () {
     for (var i = 0; i < restArray.length; i++) {
       //inside loop...
       pin = new Microsoft.Maps.Pushpin(restArray[i], {
+        icon: "css/images/ng_pin.png",
         title: restArray[i].name,
         subTitle: "",
       });
@@ -198,18 +199,17 @@ $(document).ready(function () {
       .removeClass("scale-out")
       .addClass("scale-in");
   });
-  $(document).on("keypress", "input", function(e){
-    if (e.which == 13){
-
+  $(document).on("keypress", "input", function (e) {
+    if (e.which == 13) {
       searchRestaurants($("#query").val());
-    $("#mapCard")
-      .css("visibility", "visible")
-      .removeClass("scale-out")
-      .addClass("scale-in");
-    $("#mapButton")
-      .css("visibility", "visible")
-      .removeClass("scale-out")
-      .addClass("scale-in");
+      $("#mapCard")
+        .css("visibility", "visible")
+        .removeClass("scale-out")
+        .addClass("scale-in");
+      $("#mapButton")
+        .css("visibility", "visible")
+        .removeClass("scale-out")
+        .addClass("scale-in");
     }
   });
 
@@ -263,7 +263,7 @@ $(document).ready(function () {
       var infoCardFav = $("<a>")
         .attr("id", "favBtn" + [i])
         .addClass(
-          "btn-floating halfway-fab waves-effect waves-light pink lighten-2"
+          "btn-floating halfway-fab waves-effect waves-light red lighten-2"
         )
         .val(restArray[i]);
       var infoCardFavIcon = $("<i>")
@@ -297,30 +297,30 @@ $(document).ready(function () {
       infoCardFav.append(infoCardFavIcon);
 
       //add event listener for fav button on each restaurant card
-      $("#favBtn" + [i]).on("click", function(event) {
+      $("#favBtn" + [i]).on("click", function (event) {
         //add the restaurant to the favorites menu no matter what if the favorites menu is empty
-        if (favoritesArray.length === 0){
-          favoritesArray.push($(this).val())
+        if (favoritesArray.length === 0) {
+          favoritesArray.push($(this).val());
           localStorage.setItem("favsStorage", JSON.stringify(favoritesArray));
           getFavHist();
           //but if there are already restaurants on the favorites slide out menu, don't add the same restaurant twice
         } else if (favoritesArray.length > 0) {
           var newArr = [];
-          for (var i = 0; i < favoritesArray.length; i++){
-            newArr.push(favoritesArray[i].name)
+          for (var i = 0; i < favoritesArray.length; i++) {
+            newArr.push(favoritesArray[i].name);
           }
-          if (newArr.includes($(this).val().name)){
-            console.log("You have already saved this restaurant")
-          } else{
-              favoritesArray.push($(this).val())
-              localStorage.setItem("favsStorage", JSON.stringify(favoritesArray));
-              getFavHist();
+          if (newArr.includes($(this).val().name)) {
+            console.log("You have already saved this restaurant");
+          } else {
+            favoritesArray.push($(this).val());
+            localStorage.setItem("favsStorage", JSON.stringify(favoritesArray));
+            getFavHist();
           }
-        } console.log(newArr)
-        
-      })
+        }
+        console.log(newArr);
+      });
     }
-  };
+  }
 
   //function that grabs all favorited restaurants from local storage and adds them as buttons to the favorites slide out
   function getFavHist() {
