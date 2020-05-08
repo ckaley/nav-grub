@@ -78,6 +78,10 @@ body {
   height: 211px;
 }
 
+.btn-floating {
+  background-color: #f4eada;
+}
+
 /*Sizes the image from zomato appropriately*/
 #foodImg {
   max-height: fit-content;
