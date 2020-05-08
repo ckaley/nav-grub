@@ -1,4 +1,7 @@
 /*Font styles for main headings*/
+h1,
+h2,
+h3,
 h4,
 h5,
 nav,
@@ -11,16 +14,17 @@ h6 {
   color: #cf5d4c;
   font-family: "Noto Sans SC", sans-serif;
 }
+
+p {
+  font-family: "Noto Sans SC", sans-serif;
+}
+
 span {
   font-family: "Noto Sans SC", sans-serif;
   color: #f4eada;
 }
 i {
   color: #f4eada;
-}
-h6 {
-  color: #cf5d4c;
-  font-family: "Noto Sans SC", sans-serif;
 }
 
 /*Coloring for header nav bar*/
@@ -40,6 +44,15 @@ body {
   background-attachment: fixed;
 }
 
+.navbar-fixed {
+  height: 160px;
+}
+
+.btn,
+.btn-small {
+  background-color: #cf5d4c;
+}
+
 .card {
   background-color: #f4eada;
   border-width: 1px;
@@ -47,14 +60,26 @@ body {
   border-color: #7eafa5;
 }
 
-.card-title {
-  padding-top: 10px;
+.card-image {
+  border-width: 1px;
+  border-style: solid solid solid solid;
+  border-color: #7eafa5;
+  margin: 7px 0px 0px 7px;
 }
 
-/*Coloring for buttons*/
-.btn,
-.btn-small {
-  background-color: #cf5d4c;
+.sidenav {
+  background-color: #f4eada;
+}
+
+.background {
+  border-width: 4px;
+  border-style: none none double none;
+  border-color: #cf5d4c;
+  height: 211px;
+}
+
+.btn-floating {
+  background-color: #f4eada;
 }
 
 /*Sizes the image from zomato appropriately*/
@@ -73,4 +98,11 @@ body {
 
 #query {
   font-family: "Noto Sans SC", sans-serif;
+}
+
+#mapCard {
+  background-color: #95c9bc;
+  border-width: 1px;
+  border-style: solid solid solid solid;
+  border-color: #cf5d4c;
 }
