@@ -25,5 +25,5 @@ THEN I can favorite that restaurant and save it to local storage
 WHEN I click the My Favorites button
 THEN a sidebar appears showing a list of restaurants I have favorited
 WHEN I click on the restaurant's name in the Favorites sidebar
-THEN I am taken to the restaurant's listing
+THEN I am taken to the restaurant's listing and the map shows the location of only that restaurant
 ```
